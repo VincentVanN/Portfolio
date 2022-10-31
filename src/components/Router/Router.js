@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {
   Route, Routes,
 } from 'react-router';
@@ -9,14 +8,14 @@ import Achievement from '../Achievement/Achievement';
 import About from '../About/About';
 import Cv from '../Cv/Cv';
 
-function Router({ windowSize }) {
+function Router() {
   return (
     <Routes>
       <Route
         path="/"
         element={(
           <Page>
-            <Home windowSize={windowSize} />
+            <Home />
           </Page>
         )}
       />
@@ -55,7 +54,5 @@ function Router({ windowSize }) {
     </Routes>
   );
 }
-Router.propTypes = {
-  windowSize: PropTypes.object.isRequired,
-};
+
 export default Router;

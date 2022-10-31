@@ -1,24 +1,137 @@
 @use 'src/styles/_vars.scss';
-
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .home {
   &-container {
+    position: relative;
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
   }
   &-top {
-    width: 100vw;
-    height: 47.5vh;
+    width: 100%;
+    height: 47.5%;
   }
   &-nav {
-    width: 100vw;
-    height: 15vh;
+    width: 100%;
+    height: 15%;
     background: #fdfcf2;
     color: black;
   }
   &-bottom {
-    width: 100vw;
-    height: 47.5vh;
+    width: 100%;
+    height: 47.5%;
   }
+  &-logo {
+    position: absolute;
+    width: 25em;
+    height: 25em;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fdfcf2;
+  }
+  &-nav {
+    font-size: 2.5em;
+    &-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+    &-left {
+      width: 30%;
+      display: flex;
+      justify-content:space-around;
+    }
+    &-right {
+      width: 30%;
+      display: flex;
+      justify-content:space-around;
+    }
+  }
+  &-top {
+    &-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'forward-black';
+      font-size: 10em;
+    }
+    &-left {
+      margin-left: 3%;
+    }
+  }
+  &-bottom {
+    &-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transform: rotate(180deg);
+      font-family: 'forward-black';
+      font-size: 10em;
+    }
+    &-left {
+      padding-bottom: 3%;
+      
+    }
+    &-right {
+      padding-bottom: 3%;
+      margin-right: 4%;
+    }
+  }
+}
+
+.home-nav-link {
+  letter-spacing: 0;
+  &:hover { text-decoration: none; }
+}
+
+.home-nav-link:after,
+.home-nav-link:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#000, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  width: 0;
+}
+
+.home-nav-link:hover:after,
+.home-nav-link:hover:before {
+backface-visibility: hidden;
+border-color: #000;
+transition: width 0.3s ease-in-out;
+width: 70%;
+}
+
+.home-nav-link:hover:before {
+bottom: auto;
+top: 0;
+width: 70%;
+}
+
+canvas {
+  width: 200%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

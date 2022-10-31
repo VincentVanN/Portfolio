@@ -1,5 +1,5 @@
 {
-  "name": "react-modele",
+  "name": "portfolio",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
@@ -49,11 +49,18 @@
     "webpack-merge": "*"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "13.0.1",
+    "@testing-library/user-event": "^14.4.3",
     "framer-motion": "^7.6.1",
+    "model-react": "^4.0.2",
+    "pathseg": "^1.2.1",
     "prop-types": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-particle-image": "^1.0.2",
     "react-router": "^6.4.2",
-    "react-router-dom": "^6.4.2"
+    "react-router-dom": "^6.4.2",
+    "rooks": "^7.4.1"
   }
 }
