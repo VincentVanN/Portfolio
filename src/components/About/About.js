@@ -1,10 +1,9 @@
+import LogoParticles from '../logoParticles/LogoParticles';
 import './about.scss';
 
 function About() {
   return (
-    <div>
-      about
-    </div>
+    <LogoParticles />
   );
 }
 

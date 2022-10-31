@@ -23,7 +23,7 @@ function App() {
     window.addEventListener('resize', handleWindowSize);
   }, []);
   return (
-    <Router windowSize={windowSize} />
+    <Router windowsize={windowSize} />
   );
 }
 

@@ -3,11 +3,11 @@
 
   @font-face {
     font-family: 'forward-black';
-    src: url('src/assets/fonts/Forwardv0-3-Black.otf');
+    src: url('src/assets/fonts/Forwardv0-3-Black.ttf');
   }
   @font-face {
     font-family: 'forward-light';
-    src: url('src/assets/fonts/Forwardv0-3-Light.otf');
+    src: url('src/assets/fonts/Forwardv0-3-Light.ttf');
   }
   @font-face {
     font-family: 'whoa-filled';
@@ -18,11 +18,16 @@
     src: url('src/assets/fonts/WHOA-Spine-v0.4.1.ttf');
   }
   body {
-    width: 100vw;
-    height: 100vh;
+    width: 100;
+    height: 100%;
     background: black;
     color: #fdfcf2;
     font-size: 30px;
     font-family: 'whoa-filled', sans-serif;
+  }
+  html {
+    width: 100vw;
+    height: 100vh;
+    font-size: 24px;
   }
 

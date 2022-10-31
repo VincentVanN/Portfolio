@@ -1,15 +1,25 @@
+/* eslint-disable react/require-default-props */
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import {
+  useEffect, useLayoutEffect, useRef, useState,
+} from 'react';
 /* eslint-disable no-mixed-operators */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-shadow */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable max-len */
-function Canvas(props) {
+
+function Canvas({ windowsize }) {
+  const { width, height } = windowsize;
   const [mousePos, setMousePos] = useState({});
   const canvasRef = useRef(null);
-  let particleArray = [];
+  const contextRef = useRef(null);
+  const textCoordinatesRef = useRef(null);
+  const particleArray = [];
+  let ctx;
+  //
+  //
   const particleFunc = (x, y) => {
     const particle = {
       particleX: x + 200,
@@ -23,6 +33,28 @@ function Canvas(props) {
     };
     return particle;
   };
+  //
+  //
+  const getClientPos = ({ nativeEvent }) => {
+    const { clientX, clientY } = nativeEvent;
+    setMousePos({ x: clientX, y: clientY, radius: 150 });
+  };
+  //
+  //
+  function init(textCoordinates) {
+    for (let y = 0, y2 = textCoordinates.height; y < y2; y++) {
+      for (let x = 0, x2 = textCoordinates.width; x < x2; x++) {
+        // push pixel in array when alpha > 128 (50% because opacity 1 === 255)
+        if (textCoordinates.data[(y * 4 * textCoordinates.width) + (x * 4) + 3] > 128) {
+          const positionX = x;
+          const positionY = y;
+          particleArray.push(particleFunc(positionX * 12, positionY * 12));
+        }
+      }
+    }
+  }
+  //
+  //
   const draw = (ctx, particle) => {
     if (particle.particleRandom > 0.05) {
       ctx.fillStyle = 'white';
@@ -38,6 +70,45 @@ function Canvas(props) {
       ctx.restore();
     }
   };
+
+  //
+  //
+  function connect(ctx, particleArray) {
+    let opacityValue = 1;
+    for (let a = 0; a < particleArray.length; a++) {
+      for (let b = a; b < particleArray.length; b++) {
+        const distance = (particleArray[a].particleX - particleArray[b].particleX)
+          * (particleArray[a].particleX - particleArray[b].particleX)
+        + (particleArray[a].particleY - particleArray[b].particleY)
+          * (particleArray[a].particleY - particleArray[b].particleY);
+        if (distance < 500) {
+          opacityValue = 1 - distance / 1500;
+          const dx = mousePos.x - particleArray[a].particleX;
+          const dy = mousePos.y - particleArray[a].particleY;
+          const mouseDistance = Math.sqrt(dx * dx + dy * dy);
+          if (mouseDistance < mousePos.radius / 2) {
+            ctx.strokeStyle = `rgba(255,255,0, ${opacityValue})`;
+          }
+          else if (mouseDistance < mousePos.radius - 50) {
+            ctx.strokeStyle = `rgba(255,255,140, ${opacityValue})`;
+          }
+          else if (mouseDistance < mousePos.radius + 20) {
+            ctx.strokeStyle = `rgba(255,255,210, ${opacityValue})`;
+          }
+          else {
+            ctx.strokeStyle = `rgba(255,255,255, ${opacityValue})`;
+          }
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particleArray[a].particleX, particleArray[a].particleY);
+          ctx.lineTo(particleArray[b].particleX, particleArray[b].particleY);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+  //
+  //
   const update = (particle) => {
     const dx = mousePos.x - particle.particleX;
     const dy = mousePos.y - particle.particleY;
@@ -64,88 +135,46 @@ function Canvas(props) {
       }
     }
   };
-  function init(textCoordinates, adjustX, adjustY) {
-    particleArray = [];
-    for (let y = 0, y2 = textCoordinates.height; y < y2; y++) {
-      for (let x = 0, x2 = textCoordinates.width; x < x2; x++) {
-        // push pixel in array when alpha > 128 (50% because opacity 1 === 255)
-        if (textCoordinates.data[(y * 4 * textCoordinates.width) + (x * 4) + 3] > 128) {
-          const positionX = x + adjustX;
-          const positionY = y + adjustY;
-          particleArray.push(particleFunc(positionX * 12, positionY * 12));
-        }
-      }
-    }
-  }
-  function connect(ctx) {
-    let opacityValue = 1;
-    for (let a = 0; a < particleArray.length; a++) {
-      for (let b = a; b < particleArray.length; b++) {
-        const distance = (particleArray[a].x - particleArray[b].x)
-            * (particleArray[a].x - particleArray[b].x)
-          + (particleArray[a].y - particleArray[b].y)
-            * (particleArray[a].y - particleArray[b].y);
-
-        if (distance < 1500) {
-          opacityValue = 1 - distance / 1500;
-          const dx = mousePos.x - particleArray[a].x;
-          const dy = mousePos.y - particleArray[a].y;
-          const mouseDistance = Math.sqrt(dx * dx + dy * dy);
-          if (mouseDistance < mousePos.radius / 2) {
-            ctx.strokeStyle = `rgba(255,255,0, ${opacityValue})`;
-          }
-          else if (mouseDistance < mousePos.radius - 50) {
-            ctx.strokeStyle = `rgba(255,255,140, ${opacityValue})`;
-          }
-          else if (mouseDistance < mousePos.radius + 20) {
-            ctx.strokeStyle = `rgba(255,255,210, ${opacityValue})`;
-          }
-          else {
-            ctx.strokeStyle = `rgba(255,255,255, ${opacityValue})`;
-          }
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(particleArray[a].x, particleArray[a].y);
-          ctx.lineTo(particleArray[b].x, particleArray[b].y);
-          ctx.stroke();
-        }
-      }
-    }
-  }
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    const textCoordinates = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    //
-    const adjustX = canvas.width / 200;
-    const adjustY = canvas.height / 200;
-    ctx.fillStyle = 'white';
-    ctx.font = '120px whoa-filled';
-    ctx.fillText('poet', 0, 40);
-    function animate() {
-      ctx.clearRect(0, 0, canvas.innerWidth, canvas.innerHeight);
-      connect(ctx);
+  //
+  //
+  useLayoutEffect(() => {
+    const animate = () => {
+      if (!canvasRef.current) return;
+      // contextRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      connect(contextRef.current, particleArray);
       for (let i = 0; i < particleArray.length; i++) {
         update(particleArray[i]);
-        draw(particleArray[i]);
+        draw(contextRef.current, particleArray[i]);
       }
       requestAnimationFrame(animate);
-    }
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY, radius: 150 });
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    init(textCoordinates, adjustX, adjustY);
-    animate();
+    requestAnimationFrame(animate);
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animate);
     };
   }, []);
-
-  return <canvas ref={canvasRef} {...props} />;
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    ctx.fillStyle = 'white';
+    ctx.font = '80px whoa-filled';
+    ctx.fillText('poet', 0, 60);
+    contextRef.current = ctx;
+    const textCoordinates = contextRef.current.getImageData(0, 0, canvas.width, canvas.height);
+    textCoordinatesRef.current = textCoordinates;
+    init(textCoordinatesRef.current);
+  }, [width, height]);
+  //
+  //
+  return <canvas ref={canvasRef} onMouseMove={getClientPos} />;
 }
+
 Canvas.propTypes = {
-  windowSize: PropTypes.object.isRequired,
+  windowsize: PropTypes.object,
 };
 export default Canvas;
