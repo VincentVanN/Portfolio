@@ -21,7 +21,7 @@ function App() {
       setWindowSize(sizeObject);
     }
     window.addEventListener('resize', handleWindowSize);
-  }, []);
+  }, [windowSize]);
   return (
     <Router windowsize={windowSize} />
   );

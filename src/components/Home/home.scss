@@ -11,6 +11,8 @@ main {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    cursor: none;
+    overflow: hidden;
   }
   &-top {
     width: 100%;
@@ -21,26 +23,6 @@ main {
     height: 15%;
     background: #fdfcf2;
     color: black;
-  }
-  &-bottom {
-    width: 100%;
-    height: 47.5%;
-  }
-  &-logo {
-    position: absolute;
-    width: 25em;
-    height: 25em;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 49%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fdfcf2;
-  }
-  &-nav {
     font-size: 2.5em;
     &-container {
       width: 100%;
@@ -59,6 +41,24 @@ main {
       display: flex;
       justify-content:space-around;
     }
+  }
+  &-bottom {
+    width: 100%;
+    height: 47.5%;
+  }
+  &-logo {
+    position: absolute;
+    width: 28vw;
+    height: 28vw;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fdfcf2;
   }
   &-top {
     &-container {
@@ -95,43 +95,22 @@ main {
     }
   }
 }
-
-.home-nav-link {
-  letter-spacing: 0;
-  &:hover { text-decoration: none; }
-}
-
-.home-nav-link:after,
-.home-nav-link:before {
-  backface-visibility: hidden;
-  border: 1px solid rgba(#000, 0);
-  bottom: 0px;
-  content: " ";
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  transition: all 0.3s ease-in-out;
-  width: 0;
-}
-
-.home-nav-link:hover:after,
-.home-nav-link:hover:before {
-backface-visibility: hidden;
-border-color: #000;
-transition: width 0.3s ease-in-out;
-width: 70%;
-}
-
-.home-nav-link:hover:before {
-bottom: auto;
-top: 0;
-width: 70%;
-}
-
-canvas {
-  width: 200%;
+span {
+  width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
+.home-nav-link {
+  cursor: none;
+  transition: transform 0.3s linear;
+}
+
+.cursor {
+  pointer-events: none;
+  position: fixed;
+  padding: 0.3rem;
+  background-color: #fdfcf2;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  transition: transform 0.4s ease;
+}
+
