@@ -20,7 +20,7 @@ function Cursor() {
     };
   }, []);
   return (
-    <div className="cursor" style={{ left: `${globalMousePos.x}px`, top: `${globalMousePos.y}px`, transform: isOnTittle.active ? 'translate(-50%, -50%) scale(7)' : '' }} />
+    <div className="cursor" style={{ left: `${globalMousePos.x}px`, top: `${globalMousePos.y}px`, transform: isOnTittle.active ? 'translate(-50%, -50%) scale(8)' : '' }} />
   );
 }
 export default Cursor;
