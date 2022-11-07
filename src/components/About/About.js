@@ -1,9 +1,13 @@
-import LogoParticles from '../logoParticles/LogoParticles';
+import Cursor from '../Cursor/Cursor';
+import Nav from '../Nav/Nav';
 import './about.scss';
 
 function About() {
   return (
-    <LogoParticles />
+    <div className="about-container">
+      <Nav />
+      <Cursor />
+    </div>
   );
 }
 

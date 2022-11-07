@@ -1,29 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './app.scss';
+import { useDispatch } from 'react-redux';
 import Router from '../Router/Router';
+import { setWindowSize } from '../../feature/navigation.slice';
 
 function App() {
-  const [windowSize, setWindowSize] = useState({});
-  function getWindowWidth() {
-    const width = window.innerWidth;
-    return width;
-  }
-  function getWindowHeight() {
-    const height = window.innerHeight;
-    return height;
-  }
+  const dispatch = useDispatch();
   useEffect(() => {
     function handleWindowSize() {
-      const sizeObject = {
-        width: getWindowWidth(),
-        height: getWindowHeight(),
-      };
-      setWindowSize(sizeObject);
+      dispatch(setWindowSize({
+        width: window.innerHeight,
+        height: window.innerHeight,
+      }));
     }
+    handleWindowSize();
     window.addEventListener('resize', handleWindowSize);
-  }, [windowSize]);
+    return () => window.removeEventListener('resize', handleWindowSize);
+  }, []);
   return (
-    <Router windowsize={windowSize} />
+    <Router />
   );
 }
 
