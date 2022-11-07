@@ -1,11 +1,15 @@
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 import App from 'src/components/App/App';
+import store from 'src/store/store';
 import './styles/index.scss';
 import { BrowserRouter } from 'react-router-dom';
 
 const rootReactElement = (
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>
 
 );
