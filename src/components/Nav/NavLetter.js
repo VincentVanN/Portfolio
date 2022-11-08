@@ -8,9 +8,9 @@ function NavLetter({ letter, delay, position }) {
   return (
     <motion.div
       className="nav-letter"
-      animate={{ rotateY: isOnTittle.tittle === position && isOnTittle.active === true ? 180 : 0 }}
+      animate={{ rotateZ: isOnTittle.tittle === position && isOnTittle.active === true ? 180 : 0 }}
       transition={{
-        delay: delay / 15,
+        delay: delay / 10,
       }}
     >
       {letter}

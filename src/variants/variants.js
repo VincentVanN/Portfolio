@@ -1,28 +1,7 @@
 /* eslint-disable import/prefer-default-export */
-export const navLeftVariants = {
-  open: {
-    x: 0,
-    transition: {
-      duration: 0.5,
-      x: { delay: 1 },
-    },
-  },
-  init: {
-    x: -800,
-  },
-};
-export const navRightVariants = {
-  open: {
-    x: 0,
-    transition: {
-      duration: 0.5,
-      x: { delay: 1 },
-    },
-  },
-  init: {
-    x: 800,
-  },
-};
+//
+// home variants
+//
 export const homeTopLeftVariants = {
   open: {
     y: 0,
@@ -95,6 +74,9 @@ export const homeBottomRightVariants = {
     y: -500,
   },
 };
+//
+// nav variants
+//
 export const initNavHomeVariants = {
   close: {
     top: 0,
@@ -150,5 +132,55 @@ export const navOtherPageToHomeVariants = {
         delay: 0.4,
       },
     },
+  },
+};
+export const navLeftVariants = {
+  open: {
+    x: 0,
+    transition: {
+      duration: 0.5,
+      x: { delay: 1 },
+    },
+  },
+  init: {
+    x: -800,
+  },
+};
+export const navRightVariants = {
+  open: {
+    x: 0,
+    transition: {
+      duration: 0.5,
+      x: { delay: 1 },
+    },
+  },
+  init: {
+    x: 800,
+  },
+};
+//
+// about variants
+//
+export const iconRightVariants = {
+  open: {
+    position: 'absolute',
+    top: '15%',
+    right: '25%',
+    transition: {
+      duration: 0.5,
+      position: {
+        delay: 0.2,
+      },
+      top: {
+        delay: 0.2,
+      },
+      right: {
+        delay: 0.2,
+      },
+    },
+  },
+  init: {
+    x: 0,
+    y: 0,
   },
 };

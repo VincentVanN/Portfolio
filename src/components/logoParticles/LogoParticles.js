@@ -6,7 +6,7 @@ import ParticleImage, {
   forces,
 } from 'react-particle-image';
 
-function LogoParticles({ width, height }) {
+function LogoParticles({ width, height, currentImage }) {
   const particleOptions = {
     filter: ({ x, y, image }) => {
       const pixel = image.get(x, y);
@@ -18,16 +18,15 @@ function LogoParticles({ width, height }) {
     friction: () => 0.4,
     initialPosition: ({ canvasDimensions }) => new Vector(canvasDimensions.width / 2, canvasDimensions.height / 2),
   };
-
   const motionForce = (x, y) => forces.disturbance(x, y, 50);
   return (
     <ParticleImage
-      src="/react-logo.png"
+      src={currentImage}
       width={width}
       height={height}
-      scale={1.3}
+      scale={width / 530}
       entropy={30}
-      maxParticles={6000}
+      maxParticles={5000}
       particleOptions={particleOptions}
       mouseMoveForce={motionForce}
       touchMoveForce={motionForce}
@@ -38,5 +37,6 @@ function LogoParticles({ width, height }) {
 LogoParticles.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  currentImage: PropTypes.string.isRequired,
 };
 export default LogoParticles;

@@ -14,13 +14,22 @@ import {
 
 function Home() {
   const ref = useRef(null);
-  const [height, setHeight] = useState(0);
-  const [width, setWidth] = useState(0);
+  const [size, setSize] = useState({});
   const [displayLogo, setDisplayLogo] = useState(false);
+  const updateDimensions = () => {
+    if (ref.current) {
+      setDisplayLogo(false);
+      setSize({ width: ref.current.clientWidth, height: ref.current.clientHeight });
+      setDisplayLogo(true);
+    }
+  };
   useEffect(() => {
-    setHeight(ref.current.offsetHeight);
-    setWidth(ref.current.offsetWidth);
-  }, [ref]);
+    window.addEventListener('resize', updateDimensions);
+    setSize({ width: ref.current.clientWidth, height: ref.current.clientHeight });
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+    };
+  }, []);
   useEffect(() => {
     const timer = setTimeout(() => {
       setDisplayLogo(true);
@@ -36,12 +45,16 @@ function Home() {
       <motion.div
         className="home-logo"
         ref={ref}
-        exit={{ opacity: 0 }}
-        transition={{
-          delay: 0.4,
-        }}
       >
-        {displayLogo && (<LogoParticles width={width} height={height} />)}
+        <motion.div
+          className="home-logo-container"
+          exit={{ opacity: 0 }}
+          transition={{
+            delay: 0.4,
+          }}
+        >
+          {displayLogo && (<LogoParticles width={size.width} height={size.height} currentImage="/react-logo.png" />)}
+        </motion.div>
       </motion.div>
       <div className="home-top">
         <div className="home-top-container">

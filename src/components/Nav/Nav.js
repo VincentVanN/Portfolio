@@ -59,6 +59,7 @@ function Nav() {
               state={{ previous: location.pathname || '' }}
               onMouseEnter={() => dispatch(setIsOnTittle({ active: true, tittle: link.position }))}
               onMouseLeave={() => dispatch(setIsOnTittle({ active: false, tittle: 0 }))}
+              end
             >
               {link.text.map((letter, index) => (
                 <NavLetter
