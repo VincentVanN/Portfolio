@@ -2,20 +2,24 @@
 import './home.scss';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import LogoParticles from '../logoParticles/LogoParticles';
 import Cursor from '../Cursor/Cursor';
 import Nav from '../Nav/Nav';
 import {
   homeBottomLeftVariants,
   homeBottomRightVariants,
+  homeLogoVariants,
   homeTopLeftVariants,
   homeTopRightVariants,
 } from '../../variants/variants';
 
 function Home() {
+  const { pageToGo } = useSelector((state) => state.navigation);
   const ref = useRef(null);
   const [size, setSize] = useState({});
   const [displayLogo, setDisplayLogo] = useState(false);
+
   const updateDimensions = () => {
     if (ref.current) {
       setDisplayLogo(false);
@@ -45,6 +49,8 @@ function Home() {
       <motion.div
         className="home-logo"
         ref={ref}
+        exit={pageToGo === '/about' ? 'about' : 'other'}
+        variants={homeLogoVariants}
       >
         <motion.div
           className="home-logo-container"
