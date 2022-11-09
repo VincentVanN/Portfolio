@@ -2,48 +2,47 @@
 /* eslint-disable no-mixed-operators */
 import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
 import Cursor from '../Cursor/Cursor';
 import Nav from '../Nav/Nav';
 import './about.scss';
-import { setIsOnTittle } from '../../feature/navigation.slice';
 
 function About() {
-  const dispatch = useDispatch();
   const centralElementRef = useRef(null);
+  const iconDestinationRef = useRef(null);
+  const allIconsRef = useRef([]);
   const [isOnIcon, setIsOnIcon] = useState({ active: false, number: 0 });
-  const [isAnimate, setIsAnimate] = useState({ active: false, number: 0 });
-  // const { windowSize } = useSelector((state) => state.navigation);
-  useEffect(() => () => {
-    dispatch(setIsOnTittle({ active: false, tittle: 0 }));
-  }, []);
+  const [isAnimate, setIsAnimate] = useState({ active: false, number: null });
+  const [position, setPosition] = useState([]);
+  const [secondaryIconPosition, setSecondaryIconPosition] = useState({});
   //
-  // variants
+  // get movement position for animation
   //
-  const iconRightVariants = {
-    open: {
-      x: 800,
-      y: -500,
-      transition: {
-        duration: 0.5,
-        position: {
-          delay: 0.2,
-        },
-        top: {
-          delay: 0.2,
-        },
-        right: {
-          delay: 0.2,
-        },
-      },
-    },
-    init: {
-      x: 0,
-      y: 0,
-    },
-  };
+  useEffect(() => {
+    const allIconsElements = document.querySelectorAll('.about-menuItem');
+    const ArrayIconsPosition = [];
+    const movement = [];
+    if (iconDestinationRef.current) {
+      setTimeout(() => {
+        allIconsElements.forEach((element) => {
+          const rect = element.getBoundingClientRect();
+          ArrayIconsPosition.push(rect);
+        });
+        ArrayIconsPosition.forEach((element) => {
+          movement.push({
+            x: (iconDestinationRef.current.offsetLeft - (element.left + (element.width / 2))),
+            y: (iconDestinationRef.current.offsetTop - (element.top + (element.height / 2))),
+          });
+        });
+        setPosition(movement);
+        setSecondaryIconPosition({
+          top: iconDestinationRef.current.offsetTop - (ArrayIconsPosition[1].width / 2),
+          left: iconDestinationRef.current.offsetLeft - (ArrayIconsPosition[1].width / 2),
+        });
+      }, 1600);
+    }
+  }, [iconDestinationRef]);
   //
-  // get size ref and refresh
+  // get element for resizing
   //
   const [centralElementSize, setCentralElementSize] = useState({});
   const updateDimensions = () => {
@@ -79,11 +78,73 @@ function About() {
 
     return `translate(${x}px, ${y}px) scale(${scale})`;
   }
-
+  console.log(secondaryIconPosition);
   return (
     <div className="about-container">
       <Nav />
       <Cursor />
+      <div
+        className="about-iconPosition one"
+        ref={iconDestinationRef}
+      />
+      <motion.div
+        className="about-iconPosition two"
+        style={{
+          position: 'absolute',
+          width: '5vw',
+          height: '5vw',
+          top: secondaryIconPosition.top,
+          left: secondaryIconPosition.left,
+          borderRadius: '50%',
+          background: '#fdfcf2',
+          zIndex: -1,
+          visibility: 'hidden',
+        }}
+        animate={isAnimate.active ? {
+          top: '45%',
+          zIndex: 2,
+          visibility: 'visible',
+          transition: {
+            delay: 0.5,
+            type: 'spring',
+            damping: 12,
+            stiffness: 100,
+          },
+        }
+          : {
+            x: 0,
+            y: 0,
+          }}
+      />
+      <motion.div
+        className="about-iconPosition three"
+        style={{
+          position: 'absolute',
+          width: '5vw',
+          height: '5vw',
+          top: secondaryIconPosition.top,
+          left: secondaryIconPosition.left,
+          borderRadius: '50%',
+          background: '#fdfcf2',
+          zIndex: -1,
+          visibility: 'hidden',
+        }}
+        animate={isAnimate.active ? {
+          top: '68%',
+          zIndex: 2,
+          visibility: 'visible',
+          transition: {
+            delay: 0.5,
+            type: 'spring',
+            damping: 12,
+            stiffness: 100,
+          },
+        }
+          : {
+            x: 0,
+            y: 0,
+          }}
+      />
       <div
         className="about-center"
         ref={centralElementRef}
@@ -92,6 +153,9 @@ function About() {
           <motion.div
             className="about-menuItem"
             key={image}
+            ref={(element) => {
+              allIconsRef.current[index] = element;
+            }}
             style={{
               position: 'absolute',
               width: '5vw',
@@ -109,7 +173,7 @@ function About() {
               return getTransform(value, RADIUS, index, imagePath.length);
             }}
             transition={{
-              delay: index * 0.18,
+              delay: index * 0.12,
               type: 'spring',
               stiffness: 600,
               damping: 50,
@@ -118,20 +182,35 @@ function About() {
             onMouseEnter={() => setIsOnIcon({ active: true, number: index })}
             onMouseLeave={() => setIsOnIcon({ active: false, number: 0 })}
           >
-            <motion.div
+            <motion.button
               className="about-menuItem-image-container"
               style={{
+                position: 'absolute',
                 width: '5vw',
                 height: '5vw',
                 borderRadius: '50%',
                 background: '#fdfcf2',
+                zIndex: 5,
               }}
               onClick={() => setIsAnimate({ active: true, number: index })}
-              onBlur={() => setIsAnimate({ active: false, number: 0 })}
-              animate={isAnimate.active === true && isAnimate.number === index ? 'open' : 'init'}
-              initial="init"
+              onBlur={() => setIsAnimate({ active: false, number: null })}
+              animate={
+                isAnimate.active && isAnimate.number === index
+                  ? {
+                    x: parseInt(position[index].x, 10),
+                    y: parseInt(position[index].y, 10),
+                    transition: {
+                      type: 'spring',
+                      damping: 12,
+                      stiffness: 100,
+                    },
+                  }
+                  : {
+                    x: 0,
+                    y: 0,
+                  }
+                }
               whileTap={{ scale: 0.9, rotate: 45 }}
-              variants={iconRightVariants}
             >
               <motion.img
                 src={image}
@@ -139,12 +218,13 @@ function About() {
                 className="about-menuItem-image"
                 style={{
                   width: '3vw',
+                  zIndex: 5,
                 }}
                 animate={{
                   scale: isOnIcon.active && isOnIcon.number === index ? 1.2 : 1,
                 }}
               />
-            </motion.div>
+            </motion.button>
 
           </motion.div>
         ))}

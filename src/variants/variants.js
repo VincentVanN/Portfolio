@@ -159,28 +159,20 @@ export const navRightVariants = {
   },
 };
 //
-// about variants
+// home variants
 //
-export const iconRightVariants = {
-  open: {
-    position: 'absolute',
-    top: '15%',
-    right: '25%',
+export const homeLogoVariants = {
+  other: {
+    opacity: 0,
     transition: {
-      duration: 0.5,
-      position: {
-        delay: 0.2,
-      },
-      top: {
-        delay: 0.2,
-      },
-      right: {
-        delay: 0.2,
-      },
+      delay: 0.4,
     },
   },
-  init: {
-    x: 0,
-    y: 0,
+  about: {
+    left: '25%',
+    transition: {
+      duration: 0.4,
+      delay: 0.4,
+    },
   },
 };

@@ -4,20 +4,30 @@ export const navigationSlice = createSlice({
   name: 'navigation',
   initialState: {
     windowSize: {},
-    isOnTittle: { active: false, tittle: 0 },
+    title: 0,
+    isScale: false,
+    pageToGo: '',
   },
   reducers: {
 
     setWindowSize: (state, { payload }) => {
       state.windowSize = payload;
     },
-    setIsOnTittle: (state, { payload }) => {
-      state.isOnTittle = payload;
+    setIsOntitle: (state, { payload }) => {
+      state.title = payload;
+    },
+    setPageToGo: (state, { payload }) => {
+      state.pageToGo = payload;
+    },
+    setIsScale: (state, { payload }) => {
+      state.isScale = payload;
     },
   },
 });
 export const {
   setWindowSize,
-  setIsOnTittle,
+  setIsOntitle,
+  setPageToGo,
+  setIsScale,
 } = navigationSlice.actions;
 export default navigationSlice.reducer;

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { setIsOnTittle } from '../../feature/navigation.slice';
+import { setIsOntitle, setIsScale, setPageToGo } from '../../feature/navigation.slice';
 import { navData } from './navData';
 import NavLetter from './NavLetter';
 import { initNavHomeVariants, navOtherPageToHomeVariants, navOtherPageVariants } from '../../variants/variants';
@@ -12,6 +12,14 @@ import { initNavHomeVariants, navOtherPageToHomeVariants, navOtherPageVariants }
 function Nav() {
   const location = useLocation();
   const dispatch = useDispatch();
+  const handleMouveEnter = (title) => {
+    dispatch(setIsOntitle(title));
+    dispatch(setIsScale(true));
+  };
+  const handleMouveLeave = () => {
+    dispatch(setIsOntitle(0));
+    dispatch(setIsScale(false));
+  };
   //
   // generate key for letters's links
   //
@@ -20,7 +28,8 @@ function Nav() {
   // rest cursor
   //
   useEffect(() => () => {
-    dispatch(setIsOnTittle({ active: false, tittle: 0 }));
+    dispatch(setIsOntitle(0));
+    dispatch(setIsScale(false));
   }, []);
   //
   // get variants to display
@@ -57,8 +66,9 @@ function Nav() {
               className={link.name}
               to={link.path}
               state={{ previous: location.pathname || '' }}
-              onMouseEnter={() => dispatch(setIsOnTittle({ active: true, tittle: link.position }))}
-              onMouseLeave={() => dispatch(setIsOnTittle({ active: false, tittle: 0 }))}
+              onMouseEnter={() => handleMouveEnter(link.position)}
+              onMouseLeave={handleMouveLeave}
+              onClick={() => dispatch(setPageToGo(link.path))}
               end
             >
               {link.text.map((letter, index) => (
