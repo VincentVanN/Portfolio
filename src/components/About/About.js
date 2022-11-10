@@ -2,11 +2,16 @@
 /* eslint-disable no-mixed-operators */
 import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
 import Cursor from '../Cursor/Cursor';
 import Nav from '../Nav/Nav';
 import './about.scss';
+import { textTest } from './aboutText';
+import AnimatedTextWords from '../AnimatedTextWords/animatedTextWords';
+import { setIsOntitle, setIsScale } from '../../feature/navigation.slice';
 
 function About() {
+  const dispatch = useDispatch();
   const centralElementRef = useRef(null);
   const iconDestinationRef = useRef(null);
   const allIconsRef = useRef([]);
@@ -14,6 +19,11 @@ function About() {
   const [isAnimate, setIsAnimate] = useState({ active: false, number: null });
   const [position, setPosition] = useState([]);
   const [secondaryIconPosition, setSecondaryIconPosition] = useState({});
+  const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+  useEffect(() => () => {
+    dispatch(setIsOntitle(0));
+    dispatch(setIsScale(false));
+  }, []);
   //
   // get movement position for animation
   //
@@ -21,26 +31,24 @@ function About() {
     const allIconsElements = document.querySelectorAll('.about-menuItem');
     const ArrayIconsPosition = [];
     const movement = [];
-    if (iconDestinationRef.current) {
-      setTimeout(() => {
-        allIconsElements.forEach((element) => {
-          const rect = element.getBoundingClientRect();
-          ArrayIconsPosition.push(rect);
+    if (isAnimationComplete) {
+      allIconsElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        ArrayIconsPosition.push(rect);
+      });
+      ArrayIconsPosition.forEach((element) => {
+        movement.push({
+          x: (iconDestinationRef.current.offsetLeft - (element.left + (element.width / 2))),
+          y: (iconDestinationRef.current.offsetTop - (element.top + (element.height / 2))),
         });
-        ArrayIconsPosition.forEach((element) => {
-          movement.push({
-            x: (iconDestinationRef.current.offsetLeft - (element.left + (element.width / 2))),
-            y: (iconDestinationRef.current.offsetTop - (element.top + (element.height / 2))),
-          });
-        });
-        setPosition(movement);
-        setSecondaryIconPosition({
-          top: iconDestinationRef.current.offsetTop - (ArrayIconsPosition[1].width / 2),
-          left: iconDestinationRef.current.offsetLeft - (ArrayIconsPosition[1].width / 2),
-        });
-      }, 1600);
+      });
+      setPosition(movement);
+      setSecondaryIconPosition({
+        top: iconDestinationRef.current.offsetTop - (ArrayIconsPosition[1].width / 2),
+        left: iconDestinationRef.current.offsetLeft - (ArrayIconsPosition[1].width / 2),
+      });
     }
-  }, [iconDestinationRef]);
+  }, [isAnimationComplete]);
   //
   // get element for resizing
   //
@@ -58,14 +66,14 @@ function About() {
     };
   }, []);
   const imagePath = [
-    '/react-logo.png',
-    '/about-logo.png',
-    '/php-logo.png',
-    '/javascript-logo.png',
-    'html-logo.png',
-    'brain-logo.png',
-    'node-logo.png',
-    'npm-logo.png',
+    { first: 'react-logo.png', scd: 'redux-logo.png', thr: 'axios-logo.svg' },
+    { first: 'about-logo.png', scd: 'storm-logo.png', thr: 'home-logo.png' },
+    { first: 'php-logo.png', scd: 'mysql-logo.png', thr: 'bdd-relation-logo.png' },
+    { first: 'javascript-logo.png', scd: 'es6-logo.png', thr: 'ajax-logo.png' },
+    { first: 'html-logo.png', scd: 'css-logo.png', thr: 'sass-logo.png' },
+    { first: 'brain-logo.png', scd: 'agile-logo.png', thr: 'team-logo.png' },
+    { first: 'node-logo.png', scd: 'express-logo.png', thr: 'api-logo.svg' },
+    { first: 'npm-logo.png', scd: 'motion-logo.svg', thr: 'stripe-logo.png' },
   ];
   const RADIUS = centralElementSize.width / 2 + 10;
   function getTransform(progress, radius, index, totalItems) {
@@ -78,7 +86,6 @@ function About() {
 
     return `translate(${x}px, ${y}px) scale(${scale})`;
   }
-  console.log(secondaryIconPosition);
   return (
     <div className="about-container">
       <Nav />
@@ -87,64 +94,90 @@ function About() {
         className="about-iconPosition one"
         ref={iconDestinationRef}
       />
-      <motion.div
-        className="about-iconPosition two"
-        style={{
-          position: 'absolute',
-          width: '5vw',
-          height: '5vw',
-          top: secondaryIconPosition.top,
-          left: secondaryIconPosition.left,
-          borderRadius: '50%',
-          background: '#fdfcf2',
-          zIndex: -1,
-          visibility: 'hidden',
-        }}
-        animate={isAnimate.active ? {
-          top: '45%',
-          zIndex: 2,
-          visibility: 'visible',
-          transition: {
-            delay: 0.5,
-            type: 'spring',
-            damping: 12,
-            stiffness: 100,
-          },
-        }
-          : {
-            x: 0,
-            y: 0,
+      {isAnimate.active && (
+      <>
+        <motion.div
+          className="about-menuItem-image-container"
+          style={{
+            position: 'absolute',
+            width: '5vw',
+            height: '5vw',
+            top: secondaryIconPosition.top,
+            left: secondaryIconPosition.left,
+            borderRadius: '50%',
+            background: '#fdfcf2',
+            zIndex: -1,
+            visibility: 'hidden',
           }}
-      />
-      <motion.div
-        className="about-iconPosition three"
-        style={{
-          position: 'absolute',
-          width: '5vw',
-          height: '5vw',
-          top: secondaryIconPosition.top,
-          left: secondaryIconPosition.left,
-          borderRadius: '50%',
-          background: '#fdfcf2',
-          zIndex: -1,
-          visibility: 'hidden',
-        }}
-        animate={isAnimate.active ? {
-          top: '68%',
-          zIndex: 2,
-          visibility: 'visible',
-          transition: {
-            delay: 0.5,
-            type: 'spring',
-            damping: 12,
-            stiffness: 100,
-          },
-        }
-          : {
-            x: 0,
-            y: 0,
+          animate={isAnimate.active ? {
+            top: '45%',
+            zIndex: 2,
+            visibility: 'visible',
+            transition: {
+              delay: 0.5,
+              type: 'spring',
+              damping: 12,
+              stiffness: 100,
+            },
+          }
+            : {
+              x: 0,
+              y: 0,
+            }}
+        >
+          <img
+            src={imagePath[isAnimate.number].scd}
+            alt="logo-techno"
+            className="about-menuItem-image"
+            style={{
+              width: '3vw',
+              zIndex: 5,
+            }}
+          />
+        </motion.div>
+        <motion.div
+          className="about-menuItem-image-container"
+          style={{
+            position: 'absolute',
+            width: '5vw',
+            height: '5vw',
+            top: secondaryIconPosition.top,
+            left: secondaryIconPosition.left,
+            borderRadius: '50%',
+            background: '#fdfcf2',
+            zIndex: -1,
+            visibility: 'hidden',
           }}
-      />
+          animate={isAnimate.active ? {
+            top: '68%',
+            zIndex: 2,
+            visibility: 'visible',
+            transition: {
+              delay: 0.5,
+              type: 'spring',
+              damping: 12,
+              stiffness: 100,
+            },
+          }
+            : {
+              x: 0,
+              y: 0,
+            }}
+        >
+          <img
+            src={imagePath[isAnimate.number].thr}
+            alt="logo-techno"
+            className="about-menuItem-image"
+            style={{
+              width: '3vw',
+              objectFit: 'cover',
+              zIndex: 5,
+            }}
+          />
+        </motion.div>
+      </>
+      )}
+
       <div
         className="about-center"
         ref={centralElementRef}
@@ -152,7 +185,7 @@ function About() {
         {imagePath.map((image, index) => (
           <motion.div
             className="about-menuItem"
-            key={image}
+            key={image.first}
             ref={(element) => {
               allIconsRef.current[index] = element;
             }}
@@ -179,6 +212,11 @@ function About() {
               damping: 50,
               mass: 1,
             }}
+            onAnimationComplete={() => {
+              if (index === 7) {
+                setIsAnimationComplete(true);
+              }
+            }}
             onMouseEnter={() => setIsOnIcon({ active: true, number: index })}
             onMouseLeave={() => setIsOnIcon({ active: false, number: 0 })}
           >
@@ -192,8 +230,16 @@ function About() {
                 background: '#fdfcf2',
                 zIndex: 5,
               }}
-              onClick={() => setIsAnimate({ active: true, number: index })}
-              onBlur={() => setIsAnimate({ active: false, number: null })}
+              onClick={() => {
+                if (isAnimationComplete) {
+                  setIsAnimate({ active: true, number: index });
+                }
+              }}
+              onBlur={() => {
+                if (isAnimationComplete) {
+                  setIsAnimate({ active: false, number: null });
+                }
+              }}
               animate={
                 isAnimate.active && isAnimate.number === index
                   ? {
@@ -213,7 +259,7 @@ function About() {
               whileTap={{ scale: 0.9, rotate: 45 }}
             >
               <motion.img
-                src={image}
+                src={image.first}
                 alt="logo-techno"
                 className="about-menuItem-image"
                 style={{
@@ -225,10 +271,10 @@ function About() {
                 }}
               />
             </motion.button>
-
           </motion.div>
         ))}
       </div>
+      <AnimatedTextWords text={textTest} />
     </div>
   );
 }

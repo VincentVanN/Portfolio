@@ -2,7 +2,7 @@
 import './home.scss';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LogoParticles from '../logoParticles/LogoParticles';
 import Cursor from '../Cursor/Cursor';
 import Nav from '../Nav/Nav';
@@ -13,8 +13,10 @@ import {
   homeTopLeftVariants,
   homeTopRightVariants,
 } from '../../variants/variants';
+import { setIsOntitle, setIsScale } from '../../feature/navigation.slice';
 
 function Home() {
+  const dispatch = useDispatch();
   const { pageToGo } = useSelector((state) => state.navigation);
   const ref = useRef(null);
   const [size, setSize] = useState({});
@@ -42,6 +44,10 @@ function Home() {
       clearTimeout(timer);
       setDisplayLogo(false);
     };
+  }, []);
+  useEffect(() => () => {
+    dispatch(setIsOntitle(0));
+    dispatch(setIsScale(false));
   }, []);
   return (
 
