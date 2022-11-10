@@ -3,7 +3,6 @@ import './nav.scss';
 import { motion } from 'framer-motion';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { setIsOntitle, setIsScale, setPageToGo } from '../../feature/navigation.slice';
 import { navData } from './navData';
 import NavLetter from './NavLetter';
@@ -24,13 +23,6 @@ function Nav() {
   // generate key for letters's links
   //
   const generateKey = (letter, index) => `${letter}_${index}_${new Date().getTime()}`;
-  //
-  // rest cursor
-  //
-  useEffect(() => () => {
-    dispatch(setIsOntitle(0));
-    dispatch(setIsScale(false));
-  }, []);
   //
   // get variants to display
   //
