@@ -1,75 +1,25 @@
-import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setIsOntitle, setIsScale } from '../../feature/navigation.slice';
+import Cursor from '../Cursor/Cursor';
+import Nav from '../Nav/Nav';
+import SideBar from '../SideBar/SideBar';
 import './achievement.scss';
+import Card from './Card';
 
 function Achievement() {
+  const dispatch = useDispatch();
+  const [objectToDisplay, setObjectToDisplay] = useState(0);
+  useEffect(() => () => {
+    dispatch(setIsOntitle(0));
+    dispatch(setIsScale(false));
+  }, []);
   return (
-    <div className="achievement">
-      <div className="achievement-container">
-        <div className="achievement-nav">
-          <div className="achievement-nav-container">
-            <div
-              className="achievement-nav-left"
-            >
-              <NavLink
-                className="achievement-nav-link"
-                to="/about"
-              >
-                <span
-                  data-text="About"
-                >
-                  About
-                </span>
-              </NavLink>
-              <NavLink
-                className="achievement-nav-link"
-                to="/realisations"
-              >
-                <span
-                  data-text="realisations"
-                >realisations
-                </span>
-              </NavLink>
-            </div>
-            <div className="achievement-nav-center">
-              <NavLink
-                className="achievement-nav-link"
-                to="/"
-                end
-              >
-                <span
-                  data-text="Accueil"
-                >
-                  Accueil
-                </span>
-              </NavLink>
-            </div>
-            <div
-              className="achievement-nav-right"
-            >
-              <NavLink
-                className="achievement-nav-link"
-                to="/Curriculum-vitae"
-              >
-                <span
-                  data-text="Curriculum Vitae"
-                >
-                  Curriculum Vitae
-                </span>
-              </NavLink>
-              <NavLink
-                className="achievement-nav-link"
-                to="/contact"
-              >
-                <span
-                  data-text="Contact"
-                >
-                  Contact
-                </span>
-              </NavLink>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="achievement-container">
+      <Nav />
+      <Cursor />
+      <SideBar setObjectToDisplay={setObjectToDisplay} />
+      <Card objectToDisplay={objectToDisplay} />
     </div>
   );
 }

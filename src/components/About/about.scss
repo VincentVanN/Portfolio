@@ -8,11 +8,10 @@
     overflow: hidden;
   }
   &-center {
-    position: relative;
+    position: absolute;
     width: 28vw;
     height: 28vw;
     border-radius: 50%;
-    position: absolute;
     top: 50%;
     left: 25%;
     transform: translate(-50%, -50%);
@@ -41,14 +40,22 @@
     font-family: 'Messapia-bold';
     font-size: 0.6em;
     &-container {
-      width: 30vw;
-      height: 70vh;
-      top: 15%;
-      right: 10%;
-      position: absolute;
       display: flex;
-      justify-content: flex-start;
       align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      &-general {
+        width: 30vw;
+        height: 70vh;
+        top: 15%;
+        right: 10%;
+        position: absolute;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        text-align: left;
+      }
     }
   }
 }

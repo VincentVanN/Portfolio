@@ -33,6 +33,10 @@
     font-size: 30px;
     cursor: none;
     font-family: 'whoa-filled', sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
   html {
     width: 100vw;

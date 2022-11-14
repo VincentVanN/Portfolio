@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
 /* eslint-disable no-mixed-operators */
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import Cursor from '../Cursor/Cursor';
 import Nav from '../Nav/Nav';
 import './about.scss';
-import { textTest } from './aboutText';
+import { imagePath, technoText } from './aboutData';
 import AnimatedTextWords from '../AnimatedTextWords/animatedTextWords';
 import { setIsOntitle, setIsScale } from '../../feature/navigation.slice';
 
@@ -65,16 +65,6 @@ function About() {
       window.removeEventListener('resize', updateDimensions);
     };
   }, []);
-  const imagePath = [
-    { first: 'react-logo.png', scd: 'redux-logo.png', thr: 'axios-logo.svg' },
-    { first: 'about-logo.png', scd: 'storm-logo.png', thr: 'home-logo.png' },
-    { first: 'php-logo.png', scd: 'mysql-logo.png', thr: 'bdd-relation-logo.png' },
-    { first: 'javascript-logo.png', scd: 'es6-logo.png', thr: 'ajax-logo.png' },
-    { first: 'html-logo.png', scd: 'css-logo.png', thr: 'sass-logo.png' },
-    { first: 'brain-logo.png', scd: 'agile-logo.png', thr: 'team-logo.png' },
-    { first: 'node-logo.png', scd: 'express-logo.png', thr: 'api-logo.svg' },
-    { first: 'npm-logo.png', scd: 'motion-logo.svg', thr: 'stripe-logo.png' },
-  ];
   const RADIUS = centralElementSize.width / 2 + 10;
   function getTransform(progress, radius, index, totalItems) {
     const value = (index / totalItems) * progress;
@@ -274,9 +264,33 @@ function About() {
           </motion.div>
         ))}
       </div>
-      <AnimatedTextWords text={textTest} />
+      {isAnimate.active && (
+        <div className="about-text-container-general">
+          <div
+            className="about-text-container"
+            onMouseEnter={() => dispatch(setIsScale(true))}
+            onMouseLeave={() => dispatch(setIsScale(false))}
+          >
+            {technoText[isAnimate.number].first.map((text) => <AnimatedTextWords text={text} />)}
+          </div>
+          <div
+            className="about-text-container"
+            onMouseEnter={() => dispatch(setIsScale(true))}
+            onMouseLeave={() => dispatch(setIsScale(false))}
+          >
+            {technoText[isAnimate.number].scd.map((text) => <AnimatedTextWords text={text} />)}
+          </div>
+          <div
+            className="about-text-container"
+            onMouseEnter={() => dispatch(setIsScale(true))}
+            onMouseLeave={() => dispatch(setIsScale(false))}
+          >
+            {technoText[isAnimate.number].thr.map((text) => <AnimatedTextWords text={text} />)}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-export default About;
+export default React.memo(About);
