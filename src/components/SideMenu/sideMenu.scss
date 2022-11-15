@@ -1,0 +1,39 @@
+.project {
+  &-navigation{
+    position: absolute;
+    height: 70vh;
+    top: 17%;
+    left: 10%;
+    display: flex;
+    & ul {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content:space-around;
+      cursor: pointer;
+      & li {
+        color: #464444;
+        &.selected {
+          color: rgba(253,252,242,0.9);
+          text-shadow: 4px 4px 20px rgba(253,252,242,0.59);
+        }
+      }
+    }
+  }
+  &-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & p {
+      margin-right: 10px;
+      font-size: 1.1em;
+    }
+  }
+}
+.underline, .upperline {
+  width: 100%;
+  height: 1px;
+  background: #fdfcf2;
+  box-shadow: 3px 10px 121px 10px rgba(253,252,242,0.95);
+}
