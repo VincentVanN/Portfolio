@@ -7,7 +7,6 @@ export const homeTopLeftVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      y: { delay: 0.1 },
     },
   },
   close: {
@@ -25,7 +24,6 @@ export const homeTopRightVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      y: { delay: 0.1 },
     },
   },
   close: {
@@ -43,7 +41,6 @@ export const homeBottomLeftVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      y: { delay: 0.6 },
     },
   },
   close: {
@@ -61,7 +58,6 @@ export const homeBottomRightVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      y: { delay: 0.6 },
     },
   },
   close: {
@@ -113,12 +109,8 @@ export const navOtherPageToHomeVariants = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     transition: {
-      delay: 0.8,
       top: {
-        duration: 0.8,
-      },
-      transform: {
-        delay: 0.9,
+        duration: 0.5,
       },
     },
   },
@@ -129,7 +121,7 @@ export const navOtherPageToHomeVariants = {
     transition: {
       top: {
         duration: 1,
-        delay: 0.4,
+        delay: 0.5,
       },
     },
   },
@@ -161,7 +153,7 @@ export const navRightVariants = {
 //
 // home variants
 //
-export const homeLogoVariants = {
+export const centerVariants = {
   other: {
     opacity: 0,
     transition: {
@@ -174,5 +166,8 @@ export const homeLogoVariants = {
       duration: 0.4,
       delay: 0.4,
     },
+  },
+  home: {
+    display: 'block',
   },
 };

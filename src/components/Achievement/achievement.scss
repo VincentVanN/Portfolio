@@ -1,1 +1,22 @@
 @use 'src/styles/_vars.scss';
+.achievement-container{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.achievement-center {
+    position: absolute;
+    width: 28vw;
+    height: 28vw;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fdfcf2;
+}

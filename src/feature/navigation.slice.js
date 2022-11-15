@@ -4,7 +4,7 @@ export const navigationSlice = createSlice({
   name: 'navigation',
   initialState: {
     windowSize: {},
-    title: 0,
+    title: {},
     isScale: false,
     pageToGo: '',
   },
@@ -13,7 +13,7 @@ export const navigationSlice = createSlice({
     setWindowSize: (state, { payload }) => {
       state.windowSize = payload;
     },
-    setIsOntitle: (state, { payload }) => {
+    setTitlePosition: (state, { payload }) => {
       state.title = payload;
     },
     setPageToGo: (state, { payload }) => {
@@ -26,7 +26,7 @@ export const navigationSlice = createSlice({
 });
 export const {
   setWindowSize,
-  setIsOntitle,
+  setTitlePosition,
   setPageToGo,
   setIsScale,
 } = navigationSlice.actions;

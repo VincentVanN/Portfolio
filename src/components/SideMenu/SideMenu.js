@@ -16,15 +16,14 @@ function SideMenu({ setObjectToDisplay, setIsCursor }) {
       animate={{
         x: 0,
         transition: {
-          duration: 0.5,
-          delay: 0.2,
+          duration: 0.4,
         },
       }}
       exit={{
         x: -1000,
         transition: {
-          duration: 0.5,
-          delay: 0.2,
+          duration: 0.4,
+          delay: 0.45,
         },
       }}
     >
@@ -39,17 +38,14 @@ function SideMenu({ setObjectToDisplay, setIsCursor }) {
             onClick={() => setActiveIndex(index)}
           >
             {index === activeIndex ? (
-              <motion.div className="upperline" layoutId="upperline" />
+              <motion.div className={`upperline ${index}`} layoutId="upperline" />
             ) : null}
             <div className="project-title">
               <p>
                 {project.name}
               </p>
               <svg
-                x="0px"
-                y="0px"
                 viewBox="0 0 512 512"
-                xmlSpace="preserve"
                 color={index === activeIndex ? '#fdfcf2' : '#464444'}
                 width="24px"
               >
