@@ -8,7 +8,7 @@ import Nav from '../Nav/Nav';
 import './about.scss';
 import { imagePath, technoText } from './aboutData';
 import AnimatedTextWords from '../AnimatedTextWords/animatedTextWords';
-import { setIsOntitle, setIsScale } from '../../feature/navigation.slice';
+import { setIsScale, setPageToGo } from '../../feature/navigation.slice';
 
 function About() {
   const dispatch = useDispatch();
@@ -21,8 +21,7 @@ function About() {
   const [secondaryIconPosition, setSecondaryIconPosition] = useState({});
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
   useEffect(() => () => {
-    dispatch(setIsOntitle(0));
-    dispatch(setIsScale(false));
+    dispatch(setPageToGo(''));
   }, []);
   //
   // get movement position for animation
@@ -68,7 +67,6 @@ function About() {
   const RADIUS = centralElementSize.width / 2 + 10;
   function getTransform(progress, radius, index, totalItems) {
     const value = (index / totalItems) * progress;
-
     const x = radius * Math.cos(Math.PI * 2 * (value - 0.25));
     const y = radius * Math.sin(Math.PI * 2 * (value - 0.25));
 
@@ -168,9 +166,16 @@ function About() {
       </>
       )}
 
-      <div
+      <motion.div
         className="about-center"
         ref={centralElementRef}
+        exit={{
+          left: '50%',
+          transition: {
+            duration: 0.4,
+            delay: 1,
+          },
+        }}
       >
         {imagePath.map((image, index) => (
           <motion.div
@@ -192,7 +197,7 @@ function About() {
             }}
             exit={{ x: 0, opacity: 0 }}
             transformTemplate={({ x }) => {
-              const value = parseFloat(x.replace('px', ''));
+              const value = parseFloat(x.toString().replace('px', ''));
               return getTransform(value, RADIUS, index, imagePath.length);
             }}
             transition={{
@@ -263,7 +268,7 @@ function About() {
             </motion.button>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
       {isAnimate.active && (
         <div className="about-text-container-general">
           <div

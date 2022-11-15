@@ -48,6 +48,7 @@ function AnimatedTextWord({ text }) {
       variants={container}
       initial="hidden"
       animate="visible"
+      exit="hidden"
     >
       {words.map((word, index) => (
         <motion.span

@@ -2,19 +2,18 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: none;
   &-container {
     position: relative;
     width: 28vw;
     height: 28vw;
     border-radius: 50%;
-    top: 25%;
-    left: 35%;
-    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     background: #fdfcf2;
-    box-shadow: 0 2px 7px 1px rgba($color: #cac8c8, $alpha: 1.2);
     color: black;
     user-select: none;
     &-top {

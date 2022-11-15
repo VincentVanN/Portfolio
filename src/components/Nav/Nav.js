@@ -2,27 +2,15 @@
 import './nav.scss';
 import { motion } from 'framer-motion';
 import { NavLink, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setIsOntitle, setIsScale, setPageToGo } from '../../feature/navigation.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTitlePosition, setPageToGo, setIsScale } from '../../feature/navigation.slice';
 import { navData } from './navData';
-import NavLetter from './NavLetter';
 import { initNavHomeVariants, navOtherPageToHomeVariants, navOtherPageVariants } from '../../variants/variants';
 
 function Nav() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const handleMouveEnter = (title) => {
-    dispatch(setIsOntitle(title));
-    dispatch(setIsScale(true));
-  };
-  const handleMouveLeave = () => {
-    dispatch(setIsOntitle(0));
-    dispatch(setIsScale(false));
-  };
-  //
-  // generate key for letters's links
-  //
-  const generateKey = (letter, index) => `${letter}_${index}_${new Date().getTime()}`;
+  const { title } = useSelector((state) => state.navigation);
   //
   // get variants to display
   //
@@ -54,23 +42,36 @@ function Nav() {
         >
           {navPart.link.map((link) => (
             <NavLink
-              key={link.path}
+              key={link.text}
               className={link.name}
               to={link.path}
               state={{ previous: location.pathname || '' }}
-              onMouseEnter={() => handleMouveEnter(link.position)}
-              onMouseLeave={handleMouveLeave}
-              onClick={() => dispatch(setPageToGo(link.path))}
-              end
+              onClick={() => {
+                dispatch(setTitlePosition(link.position));
+                dispatch(setPageToGo(link.path));
+              }}
+              onMouseOver={() => dispatch(setIsScale(true))}
+              onMouseOut={() => dispatch(setIsScale(false))}
             >
-              {link.text.map((letter, index) => (
-                <NavLetter
-                  key={generateKey(letter, index)}
-                  letter={letter}
-                  delay={index}
-                  position={link.position}
+              {link.position === title ? (
+                <motion.div
+                  className="leftline"
+                  initial={{ y: -150 }}
+                  animate={{ y: 0 }}
+                  exit={{ y: -150 }}
                 />
-              ))}
+              ) : null}
+              <p>
+                {link.text}
+              </p>
+              {link.position === title ? (
+                <motion.div
+                  className="rightline"
+                  initial={{ y: -150 }}
+                  animate={{ y: 0 }}
+                  exit={{ y: -150 }}
+                />
+              ) : null}
             </NavLink>
           ))}
         </motion.div>

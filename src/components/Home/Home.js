@@ -9,11 +9,11 @@ import Nav from '../Nav/Nav';
 import {
   homeBottomLeftVariants,
   homeBottomRightVariants,
-  homeLogoVariants,
+  centerVariants,
   homeTopLeftVariants,
   homeTopRightVariants,
 } from '../../variants/variants';
-import { setIsOntitle, setIsScale } from '../../feature/navigation.slice';
+import { setIsScale, setPageToGo } from '../../feature/navigation.slice';
 
 function Home() {
   const dispatch = useDispatch();
@@ -39,15 +39,15 @@ function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDisplayLogo(true);
-    }, 1200);
+    }, 500);
     return () => {
       clearTimeout(timer);
       setDisplayLogo(false);
     };
   }, []);
   useEffect(() => () => {
-    dispatch(setIsOntitle(0));
     dispatch(setIsScale(false));
+    dispatch(setPageToGo(''));
   }, []);
   return (
 
@@ -55,8 +55,16 @@ function Home() {
       <motion.div
         className="home-logo"
         ref={ref}
-        exit={pageToGo === '/about' ? 'about' : 'other'}
-        variants={homeLogoVariants}
+        exit={() => {
+          if (pageToGo === '/about') {
+            return 'about';
+          }
+          if (pageToGo === '/realisations') {
+            return '';
+          }
+          return 'other';
+        }}
+        variants={centerVariants}
       >
         <motion.div
           className="home-logo-container"
