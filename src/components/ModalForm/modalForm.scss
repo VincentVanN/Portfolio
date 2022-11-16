@@ -1,0 +1,19 @@
+.modalForm {
+  position: absolute;
+  top: 14%;
+  right: 10%;
+  background: #fdfcf2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: black;
+  font-size: 0.6em;
+  padding: 7px;
+  border-radius: 10px;
+  & p {
+    padding-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+  }
+}

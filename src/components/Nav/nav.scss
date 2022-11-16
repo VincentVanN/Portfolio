@@ -9,32 +9,18 @@
   align-items: center;
   justify-content: space-between;
   margin:auto auto;
+  overflow: hidden;
   z-index: 4;
-  &-left {
+  &-element {
     width: 30%;
     height: 70%;
     display: flex;
     justify-content:space-around;
-  }
-  &-center {
-    width: 30%;
-    height: 70%;
-    display: flex;
-    justify-content:space-around;
-  }
-  &-right {
-    width: 30%;
-    height: 70%;
-    display: flex;
-    justify-content:space-around;
-  }
-  &-link {
-    display: flex;
   }
 }
 
 .leftline, .rightline {
-  border: 2px solid rgba(#000, 1);
+  border: 2px solid rgba(#000, 0.8);
   bottom: 0px;
   display: block;
   margin: 0 auto;

@@ -2,10 +2,9 @@
 import './home.scss';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import LogoParticles from '../logoParticles/LogoParticles';
 import Cursor from '../Cursor/Cursor';
-import Nav from '../Nav/Nav';
 import {
   homeBottomLeftVariants,
   homeBottomRightVariants,
@@ -13,10 +12,8 @@ import {
   homeTopLeftVariants,
   homeTopRightVariants,
 } from '../../variants/variants';
-import { setIsScale, setPageToGo } from '../../feature/navigation.slice';
 
 function Home() {
-  const dispatch = useDispatch();
   const { pageToGo } = useSelector((state) => state.navigation);
   const ref = useRef(null);
   const [size, setSize] = useState({});
@@ -44,10 +41,6 @@ function Home() {
       clearTimeout(timer);
       setDisplayLogo(false);
     };
-  }, []);
-  useEffect(() => () => {
-    dispatch(setIsScale(false));
-    dispatch(setPageToGo(''));
   }, []);
   return (
 
@@ -98,7 +91,6 @@ function Home() {
           </motion.div>
         </div>
       </div>
-      <Nav />
       <div className="home-bottom">
         <div className="home-bottom-container">
           <motion.div
