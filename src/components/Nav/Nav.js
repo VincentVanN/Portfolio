@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
 import './nav.scss';
-import { motion } from 'framer-motion';
+import { LayoutGroup, motion } from 'framer-motion';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTitlePosition, setPageToGo, setIsScale } from '../../feature/navigation.slice';
 import { navData } from './navData';
 import { initNavHomeVariants, navOtherPageToHomeVariants, navOtherPageVariants } from '../../variants/variants';
+import GlitchElement from './GlitchElement';
 
 function Nav() {
   const location = useLocation();
@@ -35,45 +36,42 @@ function Nav() {
       {navData.map((navPart) => (
         <motion.div
           key={navPart.name}
-          className={navPart.name}
+          className="nav-element"
           initial="init"
           animate="open"
           variants={location.pathname === '/' && !location.state ? navPart.variants : ''}
         >
-          {navPart.link.map((link) => (
-            <NavLink
-              key={link.text}
-              className={link.name}
-              to={link.path}
-              state={{ previous: location.pathname || '' }}
-              onClick={() => {
-                dispatch(setTitlePosition(link.position));
-                dispatch(setPageToGo(link.path));
-              }}
-              onMouseOver={() => dispatch(setIsScale(true))}
-              onMouseOut={() => dispatch(setIsScale(false))}
-            >
-              {link.position === title ? (
-                <motion.div
-                  className="leftline"
-                  initial={{ y: -150 }}
-                  animate={{ y: 0 }}
-                  exit={{ y: -150 }}
-                />
-              ) : null}
-              <p>
-                {link.text}
-              </p>
-              {link.position === title ? (
-                <motion.div
-                  className="rightline"
-                  initial={{ y: -150 }}
-                  animate={{ y: 0 }}
-                  exit={{ y: -150 }}
-                />
-              ) : null}
-            </NavLink>
-          ))}
+          <LayoutGroup>
+            {navPart.link.map((link) => (
+              <NavLink
+                key={link.text}
+                className={link.name}
+                to={link.path}
+                state={{ previous: location.pathname || '' }}
+                onClick={() => {
+                  dispatch(setTitlePosition(link.position));
+                  dispatch(setPageToGo(link.path));
+                }}
+                onMouseOver={() => dispatch(setIsScale(true))}
+                onMouseOut={() => dispatch(setIsScale(false))}
+              >
+                {link.position === title ? (
+                  <motion.div
+                    className="leftline"
+                    layoutId="leftline"
+                  />
+                ) : null}
+                <GlitchElement text={link.text} position={link.position} />
+                {link.position === title ? (
+                  <motion.div
+                    className="rightline"
+                    layoutId="rightline"
+                  />
+                ) : null}
+              </NavLink>
+            ))}
+          </LayoutGroup>
+
         </motion.div>
       ))}
     </motion.div>

@@ -4,11 +4,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import Cursor from '../Cursor/Cursor';
-import Nav from '../Nav/Nav';
 import './about.scss';
 import { imagePath, technoText } from './aboutData';
 import AnimatedTextWords from '../AnimatedTextWords/animatedTextWords';
-import { setIsScale, setPageToGo } from '../../feature/navigation.slice';
+import { setIsScale } from '../../feature/navigation.slice';
 
 function About() {
   const dispatch = useDispatch();
@@ -20,9 +19,6 @@ function About() {
   const [position, setPosition] = useState([]);
   const [secondaryIconPosition, setSecondaryIconPosition] = useState({});
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
-  useEffect(() => () => {
-    dispatch(setPageToGo(''));
-  }, []);
   //
   // get movement position for animation
   //
@@ -76,7 +72,6 @@ function About() {
   }
   return (
     <div className="about-container">
-      <Nav />
       <Cursor />
       <div
         className="about-iconPosition one"

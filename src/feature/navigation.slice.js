@@ -4,7 +4,7 @@ export const navigationSlice = createSlice({
   name: 'navigation',
   initialState: {
     windowSize: {},
-    title: {},
+    title: 0,
     isScale: false,
     pageToGo: '',
   },
