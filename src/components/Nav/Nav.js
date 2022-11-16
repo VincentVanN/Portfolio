@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setTitlePosition, setPageToGo, setIsScale } from '../../feature/navigation.slice';
 import { navData } from './navData';
 import { initNavHomeVariants, navOtherPageToHomeVariants, navOtherPageVariants } from '../../variants/variants';
-import GlitchElement from './GlitchElement';
+import GlitchElement from '../../GlitchElement/GlitchElement';
 
 function Nav() {
   const location = useLocation();
@@ -61,7 +61,7 @@ function Nav() {
                     layoutId="leftline"
                   />
                 ) : null}
-                <GlitchElement text={link.text} position={link.position} />
+                <GlitchElement text={link.text} position={link.position} element="nav" />
                 {link.position === title ? (
                   <motion.div
                     className="rightline"

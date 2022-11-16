@@ -7,6 +7,8 @@ export const navigationSlice = createSlice({
     title: 0,
     isScale: false,
     pageToGo: '',
+    formMessage: [],
+    showModal: false,
   },
   reducers: {
 
@@ -22,6 +24,15 @@ export const navigationSlice = createSlice({
     setIsScale: (state, { payload }) => {
       state.isScale = payload;
     },
+    setFormMessage: (state, { payload }) => {
+      state.formMessage.push(payload);
+    },
+    deleteFormMessage: (state) => {
+      state.formMessage = [];
+    },
+    setShowModal: (state, { payload }) => {
+      state.showModal = payload;
+    },
   },
 });
 export const {
@@ -29,5 +40,8 @@ export const {
   setTitlePosition,
   setPageToGo,
   setIsScale,
+  setFormMessage,
+  deleteFormMessage,
+  setShowModal,
 } = navigationSlice.actions;
 export default navigationSlice.reducer;

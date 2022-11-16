@@ -11,7 +11,7 @@ function Cursor() {
       className="cursor"
       style={{ left: `${mouseMouse.x}px`, top: `${mouseMouse.y}px` }}
       animate={{
-        scale: isScale ? 8 : 1,
+        scale: isScale ? 7 : 1,
       }}
     />
   );
