@@ -8,27 +8,15 @@ export const navData = [
     link: [
       {
         name: 'nav-link',
-        path: '/about',
-        position: 1,
-        text: 'about',
-      },
-      {
-        name: 'nav-link',
-        path: '/realisations',
-        position: 2,
-        text: 'realisation',
-      },
-    ],
-  },
-  {
-    name: 'nav-center',
-    variants: null,
-    link: [
-      {
-        name: 'nav-link',
         path: '/',
-        position: 3,
+        position: 1,
         text: 'accueil',
+      },
+      {
+        name: 'nav-link',
+        path: '/about',
+        position: 2,
+        text: 'about',
       },
     ],
   },
@@ -38,14 +26,14 @@ export const navData = [
     link: [
       {
         name: 'nav-link',
-        path: '/Curriculum-vitae',
-        position: 4,
-        text: 'curriculumvitae',
+        path: '/realisations',
+        position: 3,
+        text: 'realisation',
       },
       {
         name: 'nav-link',
         path: '/contact',
-        position: 5,
+        position: 4,
         text: 'contact',
       },
     ],

@@ -18,8 +18,6 @@ function GlitchElement({
         component={element === 'nav' ? 'h2' : 'p'}
         disabled={disable()}
         duration={6500}
-        color1="#C2C5C7"
-        color2="#494647"
         onHover={element === 'nav'}
       >
         {text}

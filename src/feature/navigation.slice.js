@@ -25,7 +25,7 @@ export const navigationSlice = createSlice({
       state.isScale = payload;
     },
     setFormMessage: (state, { payload }) => {
-      state.formMessage.push(payload);
+      state.formMessage = payload;
     },
     deleteFormMessage: (state) => {
       state.formMessage = [];
