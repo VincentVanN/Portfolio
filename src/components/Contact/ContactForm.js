@@ -20,6 +20,7 @@ function ContactForm({ setIsCursor }) {
   const form = useRef();
   const buttonRef = useRef();
   const [buttonWidth, setButtonWidth] = useState(0);
+  const [isOnClick, setIsOnClick] = useState(false);
   const updateDimensions = () => {
     if (buttonRef.current) {
       setButtonWidth(buttonRef.current.clientWidth);
@@ -33,6 +34,20 @@ function ContactForm({ setIsCursor }) {
     };
   }, []);
   const RADIUS = (buttonWidth / 2) + 10;
+  //
+  const flyPaperVariants = {
+    open: {
+      x: [-10, 80],
+      y: [10, -80],
+      transition: {
+        duration: 0.4,
+      },
+    },
+    init: {
+      x: 0,
+      y: 0,
+    },
+  };
   //
   const placeholderVariants = {
     open: {
@@ -97,11 +112,13 @@ function ContactForm({ setIsCursor }) {
             setbuttonText('success! - success! - success! - ');
             setisOverflowHidden(true);
             resetForm(e);
+            setIsOnClick(false);
           }
         },
         (error) => {
           dispatch(setFormMessage(`une erreur est survenue: ${error.text}`));
           dispatch(setShowModal(true));
+          setIsOnClick(false);
         },
       );
   };
@@ -110,22 +127,23 @@ function ContactForm({ setIsCursor }) {
     if (isErrorForm(form.current)) {
       dispatch(setFormMessage(isErrorForm(form.current)));
       dispatch(setShowModal(true));
+      setIsOnClick(false);
     }
     else sendEmail(e);
   };
 
   return (
-    <div className="contact-form">
-      <motion.div
+    <motion.div
+      className="contact-form"
+      initial={{ y: '100vh' }}
+      animate={{ y: 0 }}
+      transition={{
+        duration: 0.6,
+      }}
+      exit={{ y: '100vh' }}
+    >
+      <div
         className="contact-form-logo"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{
-          duration: 0.5,
-          type: 'spring',
-          damping: 7,
-          stiffness: 450,
-        }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -134,15 +152,10 @@ function ContactForm({ setIsCursor }) {
         >
           <rect x="48" y="96" width="416" height="320" rx="40" ry="40" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" /><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M112 160l144 112 144-112" />
         </svg>
-      </motion.div>
-      <motion.form
+      </div>
+      <form
         ref={form}
         onSubmit={verifEmail}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{
-          delay: 0.5,
-        }}
       >
         <div
           className="input-container"
@@ -203,7 +216,7 @@ function ContactForm({ setIsCursor }) {
             variants={placeholderVariants}
             onClick={() => setfocus('message')}
           >
-            <GlitchElement text="message" focus={focus === 'message'} element="span" />
+            <GlitchElement text="Message" focus={focus === 'message'} element="span" />
           </motion.span>
         </div>
         <div className="contactForm-button-container">
@@ -218,9 +231,16 @@ function ContactForm({ setIsCursor }) {
             }}
             animate={buttonText ? 'open' : 'init'}
             variants={buttonVariants}
+            onClick={() => setIsOnClick(true)}
           >
             {!buttonText && (
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1000 1000" width="45" enableBackground="new 0 0 1000 1000" xmlSpace="preserve">
+              <motion.svg
+                viewBox="0 0 1000 1000"
+                width="45"
+                enableBackground="new 0 0 1000 1000"
+                animate={isOnClick ? 'open' : 'init'}
+                variants={flyPaperVariants}
+              >
                 <g>
                   <g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
                     <path
@@ -228,7 +248,7 @@ function ContactForm({ setIsCursor }) {
                     />
                   </g>
                 </g>
-              </svg>
+              </motion.svg>
             )}
             {buttonText && (
               <svg xmlns="http://www.w3.org/2000/svg" className="ionicon" viewBox="0 0 512 512" color="#fdfcf2">
@@ -253,8 +273,8 @@ function ContactForm({ setIsCursor }) {
           />
         </div>
 
-      </motion.form>
-    </div>
+      </form>
+    </motion.div>
   );
 }
 ContactForm.propTypes = {

@@ -29,6 +29,8 @@ function App() {
   useEffect(() => {
     dispatch(setIsScale(false));
     dispatch(setPageToGo(''));
+  }, []);
+  useEffect(() => {
     navData.forEach((element) => {
       element.link.forEach((link) => {
         if (location.pathname === link.path) {

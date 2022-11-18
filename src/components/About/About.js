@@ -2,7 +2,7 @@
 /* eslint-disable no-mixed-operators */
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Cursor from '../Cursor/Cursor';
 import './about.scss';
 import { imagePath, technoText } from './aboutData';
@@ -11,6 +11,7 @@ import { setIsScale } from '../../feature/navigation.slice';
 
 function About() {
   const dispatch = useDispatch();
+  const { pageToGo } = useSelector((state) => state.navigation);
   const centralElementRef = useRef(null);
   const iconDestinationRef = useRef(null);
   const allIconsRef = useRef([]);
@@ -165,7 +166,8 @@ function About() {
         className="about-center"
         ref={centralElementRef}
         exit={{
-          left: '50%',
+          left: pageToGo === '/contact' ? '25%' : '50%',
+          opacity: pageToGo === '/contact' ? 0 : 1,
           transition: {
             duration: 0.4,
             delay: 1,
