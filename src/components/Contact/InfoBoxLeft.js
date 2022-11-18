@@ -11,17 +11,17 @@ function InfoBoxLeft() {
     return <div>loading...</div>;
   };
   return (
-    <div className="infoBox-container-left">
-      <motion.div
+    <motion.div
+      className="infoBox-container-left"
+      initial={{ y: '-100vh' }}
+      animate={{ y: 0 }}
+      transition={{
+        duration: 0.6,
+      }}
+      exit={{ y: '-100vh' }}
+    >
+      <div
         className="infoBox-location"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{
-          duration: 0.5,
-          type: 'spring',
-          damping: 7,
-          stiffness: 450,
-        }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -36,25 +36,20 @@ function InfoBoxLeft() {
             strokeWidth="32"
           /><motion.circle cx="256" cy="192" r="48" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" />
         </svg>
-      </motion.div>
+      </div>
       <div className="infoBox-location-title">
         <p>localisation: Mons, Belgique.</p>
       </div>
-      <motion.div
+      <div
         className="infoBox-mapsContainer"
         onMouseOver={() => dispatch(setIsScale(true))}
         onMouseOut={() => dispatch(setIsScale(false))}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{
-          delay: 0.5,
-        }}
       >
         <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} render={render}>
           <Maps />
         </Wrapper>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
 

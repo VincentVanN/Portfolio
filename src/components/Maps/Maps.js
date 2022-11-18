@@ -93,7 +93,7 @@ function Maps() {
       position: new window.google.maps.LatLng(50.45478, 3.95239),
       map: map,
     });
-  });
+  }, []);
   return (
     <div ref={ref} id="map" />
   );
