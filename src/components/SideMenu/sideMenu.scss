@@ -5,6 +5,9 @@
     top: 17%;
     left: 10%;
     display: flex;
+    &::selection {
+      background-color: none;
+    }
     & ul {
       height: 100%;
       display: flex;
@@ -12,6 +15,9 @@
       align-items: flex-start;
       justify-content:space-around;
       cursor: pointer;
+      &::selection {
+        background-color: red;
+      }
       & li {
         color: #464444;
         &.selected {

@@ -20,18 +20,28 @@ function LogoParticles({ width, height, currentImage }) {
   };
   const motionForce = (x, y) => forces.disturbance(x, y, 50);
   return (
-    <ParticleImage
-      src={currentImage}
-      width={width}
-      height={height}
-      scale={width / 530}
-      entropy={30}
-      maxParticles={5000}
-      particleOptions={particleOptions}
-      mouseMoveForce={motionForce}
-      touchMoveForce={motionForce}
-      backgroundColor=""
-    />
+    <div
+      style={{
+        width: width,
+        height: height,
+        borderRadius: '50%',
+        overflow: 'hidden',
+      }}
+    >
+      <ParticleImage
+        src={currentImage}
+        width={width}
+        height={height}
+        scale={width / 530}
+        entropy={20}
+        maxParticles={5000}
+        particleOptions={particleOptions}
+        mouseMoveForce={motionForce}
+        touchMoveForce={motionForce}
+        backgroundColor=""
+      />
+    </div>
+
   );
 }
 LogoParticles.propTypes = {

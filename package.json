@@ -61,6 +61,7 @@
     "pathseg": "^1.2.1",
     "prop-types": "*",
     "react": "^18.2.0",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
     "react-glitch-effect": "^3.1.0",
     "react-laag": "^2.0.4",

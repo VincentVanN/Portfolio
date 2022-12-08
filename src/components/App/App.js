@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     function handleWindowSize() {
       dispatch(setWindowSize({
-        width: window.innerHeight,
+        width: window.innerWidth,
         height: window.innerHeight,
       }));
     }

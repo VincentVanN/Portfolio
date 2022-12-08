@@ -44,4 +44,12 @@
     height: 100vh;
     font-size: 24px;
   }
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    // hidden blue highlight on selection
+    -moz-user-select: none; /* Firefox */
+    -webkit-user-select: none; /* Chrome */
+    -ms-user-select: none; /* Edge */
+    user-select: none; /* standard */ 
+  }
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable max-len */
 /* eslint-disable no-mixed-operators */
 import React, { useEffect, useState, useRef } from 'react';
@@ -269,25 +270,25 @@ function About() {
       {isAnimate.active && (
         <div className="about-text-container-general">
           <div
-            className="about-text-container"
+            className="about-text-container first"
             onMouseEnter={() => dispatch(setIsScale(true))}
             onMouseLeave={() => dispatch(setIsScale(false))}
           >
-            {technoText[isAnimate.number].first.map((text) => <AnimatedTextWords text={text} />)}
+            {technoText[isAnimate.number].first.map((text, index) => <AnimatedTextWords key={index + text} text={text} />)}
           </div>
           <div
             className="about-text-container"
             onMouseEnter={() => dispatch(setIsScale(true))}
             onMouseLeave={() => dispatch(setIsScale(false))}
           >
-            {technoText[isAnimate.number].scd.map((text) => <AnimatedTextWords text={text} />)}
+            {technoText[isAnimate.number].scd.map((text, index) => <AnimatedTextWords key={index + text} text={text} />)}
           </div>
           <div
             className="about-text-container"
             onMouseEnter={() => dispatch(setIsScale(true))}
             onMouseLeave={() => dispatch(setIsScale(false))}
           >
-            {technoText[isAnimate.number].thr.map((text) => <AnimatedTextWords text={text} />)}
+            {technoText[isAnimate.number].thr.map((text, index) => <AnimatedTextWords key={index + text} text={text} />)}
           </div>
         </div>
       )}

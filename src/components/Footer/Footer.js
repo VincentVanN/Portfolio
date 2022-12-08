@@ -12,7 +12,7 @@ function Footer() {
       onMouseOut={() => dispatch(setIsScale(false))}
     >
       <p>
-        Powered with React by Vinc VanN
+        Powered with REACT by Vinc VanN
       </p>
       <a href="https://github.com/VincentVanN/portfolio" target="blank">
         <img className="footer-logo" src="/github-logo.svg" alt="github" />

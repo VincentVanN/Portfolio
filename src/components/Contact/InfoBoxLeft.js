@@ -45,7 +45,7 @@ function InfoBoxLeft() {
         onMouseOver={() => dispatch(setIsScale(true))}
         onMouseOut={() => dispatch(setIsScale(false))}
       >
-        <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} render={render}>
+        <Wrapper apiKey={process.env.REACT_PUBLIC_GOOGLE_MAPS_API_KEY} render={render}>
           <Maps />
         </Wrapper>
       </div>

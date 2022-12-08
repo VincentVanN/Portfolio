@@ -6,7 +6,7 @@ import { setIsScale } from '../../feature/navigation.slice';
 function InfoBoxRight() {
   const dispatch = useDispatch();
   function onEmailClick() {
-    window.open(`mailto:${process.env.NEXT_PUBLIC_EMAIL}`);
+    window.open(`mailto:${process.env.REACT_PUBLIC_EMAIL}`);
   }
   return (
     <motion.div
@@ -190,7 +190,7 @@ function InfoBoxRight() {
           <p
             className="infoBox-info-info"
           >
-            Mon profil vous intéresse et vous souhaitez en savoir plus? Adressez moi un message via le formulaire, email ou Linkedin. Je suis à l'écoute de toutes opportunités professionnelles, sous contrat ou freelance.
+            Mon profil vous intéresse et vous souhaitez en savoir plus? Adressez moi un message via le formulaire, email ou Linkedin.
           </p>
         </div>
       </div>
