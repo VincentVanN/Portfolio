@@ -135,7 +135,7 @@ export const navLeftVariants = {
     },
   },
   init: {
-    x: -800,
+    x: -2000,
   },
 };
 export const navRightVariants = {
@@ -147,7 +147,7 @@ export const navRightVariants = {
     },
   },
   init: {
-    x: 800,
+    x: 2000,
   },
 };
 //
