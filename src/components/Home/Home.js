@@ -36,7 +36,7 @@ function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDisplayLogo(true);
-    }, 500);
+    }, 300);
     return () => {
       clearTimeout(timer);
       setDisplayLogo(false);
@@ -50,7 +50,7 @@ function Home() {
         ref={ref}
         exit={() => {
           if (pageToGo === '/about') {
-            return 'about';
+            return 'homeExitAbout';
           }
           if (pageToGo === '/realisations') {
             return '';
@@ -60,14 +60,28 @@ function Home() {
         variants={centerVariants}
       >
         <motion.div
-          className="home-logo-container"
-          exit={{ opacity: 0 }}
-          transition={{
-            delay: 0.4,
+          className="home-center-image"
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: pageToGo === '/about' ? 1 : 0,
+            transition: {
+              duration: 0.5,
+            },
           }}
         >
-          {displayLogo && (<LogoParticles width={size.width} height={size.height} currentImage="/react-logo.png" />)}
+          <img src="Me.png" alt="" />
         </motion.div>
+        {pageToGo !== '/about' && (
+          <motion.div
+            className="home-logo-container"
+            exit={{ opacity: 0 }}
+          >
+            {displayLogo && (<LogoParticles width={size.width} height={size.height} currentImage="/react-logo.png" />)}
+          </motion.div>
+        )}
+
       </motion.div>
       <div className="home-top">
         <div className="home-top-container">

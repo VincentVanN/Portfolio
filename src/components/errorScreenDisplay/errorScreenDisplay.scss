@@ -1,0 +1,63 @@
+.screenToSmall {
+  font-family: 'whoa-filled';
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+    &-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    & p {
+      padding: 10px;
+    }
+}
+.top, .bottom {
+  font-family: 'forward-black';
+  font-size: max(12vw, 80px);
+}
+.bottom {
+  rotate: 180deg;
+}
+
+.rotateScreen {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%);
+  &-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    & svg {
+      width: 80px;
+    }
+  }
+}
+.animation {
+  display: flex;
+}
+.arrow-top {
+  position: relative;
+  left: 20px;
+  rotate: -45deg;
+  & svg {
+    width: 50px;
+  }
+}
+.arrow-bottom {
+  position: relative;
+  right: 20px;
+  rotate: 90deg;
+  & svg {
+    width: 50px;
+  }
+}

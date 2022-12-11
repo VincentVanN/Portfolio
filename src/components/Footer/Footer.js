@@ -15,7 +15,7 @@ function Footer() {
         Powered with REACT by Vinc VanN
       </p>
       <a href="https://github.com/VincentVanN/portfolio" target="blank">
-        <img className="footer-logo" src="/github-logo.svg" alt="github" />
+        <img className="footer-logo" src="/github-gray-logo.svg" alt="github" />
       </a>
     </div>
   );

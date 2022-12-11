@@ -61,7 +61,7 @@ export const homeBottomRightVariants = {
     },
   },
   close: {
-    x: -1000,
+    x: -1200,
     transition: {
       duration: 0.2,
     },
@@ -167,7 +167,18 @@ export const centerVariants = {
       delay: 0.4,
     },
   },
+  homeExitAbout: {
+    left: '25%',
+    background: 'transparent',
+    transition: {
+      duration: 0.4,
+      delay: 0.4,
+    },
+  },
   home: {
     display: 'block',
+  },
+  contact: {
+    visibility: 'hidden',
   },
 };

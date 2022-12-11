@@ -6,7 +6,7 @@ export const imagePath = [
   { first: 'javascript-logo.png', scd: 'es6-logo.png', thr: 'ajax-logo.png' },
   { first: 'html-logo.png', scd: 'css-logo.png', thr: 'sass-logo.png' },
   { first: 'brain-logo.png', scd: 'agile-logo.png', thr: 'team-logo.png' },
-  { first: 'node-logo.png', scd: 'express-logo.png', thr: 'api-logo.svg' },
+  { first: 'google-logo.png', scd: 'firebase-logo.png', thr: 'api-logo.svg' },
   { first: 'npm-logo.png', scd: 'motion-logo.svg', thr: 'stripe-logo.png' },
 ];
 export const technoText = [
@@ -19,8 +19,8 @@ export const technoText = [
     ],
     scd: [
       'Maîtrise de Redux et Redux toolkit pour la gestion du state',
-      'mise en place des reducers, extra-reducers',
-      'custom middleware & asyncThunk',
+      'Mise en place des reducers, extra-reducers',
+      'Custom middleware & asyncThunk',
     ],
     thr: [
       'Maîtrise d\'Axios et API similaires',
@@ -30,7 +30,7 @@ export const technoText = [
   },
   {
     first: [
-      'Je m\'appelle Vincent Van Nieuwenborgh',
+      'Vincent Van Nieuwenborgh',
       'Développeur Front End',
     ],
     scd: [
@@ -105,12 +105,12 @@ export const technoText = [
       'Soft skills:',
       'Esprit d\'entreprise, force de proposition, capacités d\'adaptation',
       'Diverses experiences professionnelles dont chef d\'entreprise',
-      'esprit managérial: compose avec les containtes, délais, et moyens pour atteindre les résultats fixés',
+      'Compose avec les containtes, délais, et moyens pour atteindre les résultats fixés',
     ],
     scd: [
       'Pratiques Agiles',
       'Travail en sprint',
-      'amélioration continue',
+      'Amélioration continue',
       'planification adaptative',
     ],
     thr: [
@@ -121,42 +121,32 @@ export const technoText = [
   },
   {
     first: [
-      'Loremipsum br dolor,sit',
-      'Loremipsum  dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut doloremLoremipsum br dolor,sit  ametconsectetur adipisicingelit. Id',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
+      'Maîtrise des devTools et dashboard de Google',
     ],
     scd: [
-      'Loremipsum br dolor,sit',
-      'Loremipsum  dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut doloremLoremipsum br dolor,sit  ametconsectetur adipisicingelit. Id',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
+      'Maîtrise du noSQL',
+      'Maîtrise de la plateforme firebase',
+      'Oauth 2.0, C.R.U.D firestore, gestion de documents et collections...',
     ],
     thr: [
-      'Loremipsum br dolor,sit',
-      'Loremipsum  dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut doloremLoremipsum br dolor,sit  ametconsectetur adipisicingelit. Id',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
+      'Gestion des differentes API google',
+      'Maps, Oauth 2.0, Analytics...',
+      'Création d\'extension Google et progressive web app',
     ],
   },
   {
     first: [
-      'Loremipsum br dolor,sit',
-      'Loremipsum  dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut doloremLoremipsum br dolor,sit  ametconsectetur adipisicingelit. Id',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
+      'Gestion des packages Manager',
+      'NPM, Yarn, PNPM ...',
     ],
     scd: [
-      'Loremipsum br dolor,sit',
-      'Loremipsum  dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut doloremLoremipsum br dolor,sit  ametconsectetur adipisicingelit. Id',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
+      'Maîtrise de Framer Motion',
+      'Construction d\'animations de boutons, d\'événements contextuels, de popups, texte...',
+      'Parallax, transitions de pages, fondus, drag & drop, effets de particules...',
     ],
     thr: [
-      'Loremipsum br dolor,sit',
-      'Loremipsum  dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut doloremLoremipsum br dolor,sit  ametconsectetur adipisicingelit. Id',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
-      'Loremipsum br dolor,sit  ametconsectetur adipisicingelit. Id  accusamus veniam aut dolorem',
+      'Mise en place de système de paiement',
+      'Construction d\'API de paiement avec Node.js et Stripe',
     ],
   },
 ];

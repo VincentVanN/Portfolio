@@ -9,7 +9,7 @@ function AnimatedTextWord({ text }) {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.04, delayChildren: 0.01 * i },
+      transition: { staggerChildren: 0.09, delayChildren: 0.02 * i },
     }),
   };
 

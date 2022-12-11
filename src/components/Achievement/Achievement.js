@@ -28,10 +28,28 @@ function Achievement() {
             if (pageToGo === '/' || !pageToGo) {
               return 'home';
             }
+            if (pageToGo === '/contact') {
+              return 'contact';
+            }
             return 'other';
           }}
           variants={centerVariants}
-        />
+        >
+          <motion.div
+            className="about-center-image"
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: pageToGo === '/about' ? 1 : 0,
+              transition: {
+                duration: 0.5,
+              },
+            }}
+          >
+            <img src="Me.png" alt="" />
+          </motion.div>
+        </motion.div>
       )}
       {isCursor && (
         <Cursor />

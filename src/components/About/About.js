@@ -90,7 +90,6 @@ function About() {
             top: secondaryIconPosition.top,
             left: secondaryIconPosition.left,
             borderRadius: '50%',
-            background: '#fdfcf2',
             zIndex: -1,
             visibility: 'hidden',
           }}
@@ -129,7 +128,6 @@ function About() {
             top: secondaryIconPosition.top,
             left: secondaryIconPosition.left,
             borderRadius: '50%',
-            background: '#fdfcf2',
             zIndex: -1,
             visibility: 'hidden',
           }}
@@ -171,10 +169,25 @@ function About() {
           opacity: pageToGo === '/contact' ? 0 : 1,
           transition: {
             duration: 0.4,
-            delay: 1,
+            delay: 0.8,
           },
         }}
+
       >
+        <motion.div
+          className="about-center-image"
+          onMouseOver={() => dispatch(setIsScale(true))}
+          onMouseOut={() => dispatch(setIsScale(false))}
+          exit={{
+            opacity: 0,
+            transition: {
+              duration: 0.4,
+              delay: 1,
+            },
+          }}
+        >
+          <img src="Me.png" alt="" />
+        </motion.div>
         {imagePath.map((image, index) => (
           <motion.div
             className="about-menuItem"
@@ -220,7 +233,6 @@ function About() {
                 width: '5vw',
                 height: '5vw',
                 borderRadius: '50%',
-                background: '#fdfcf2',
                 zIndex: 5,
               }}
               onClick={() => {

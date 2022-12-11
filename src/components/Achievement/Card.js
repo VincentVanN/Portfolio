@@ -104,6 +104,68 @@ function Card({ objectToDisplay }) {
               radiusRef={RADIUS - 20}
               direction={direction}
             />
+            {!cardsData[objectToDisplay].popupText && (
+              <motion.div
+                className="withoutPopupText"
+                initial={{
+                  scale: 0,
+                }}
+                animate={{
+                  scale: popupWindow ? 1 : 0,
+                }}
+                transition={{
+                  delay: 0.1,
+                  duration: 0.4,
+                }}
+                drag
+                dragElastic={0.4}
+                dragConstraints={{
+                  top: 0, left: 0, right: 0, bottom: 0,
+                }}
+              >
+                <div className="iconContainer">
+                  <a
+                    href={cardsData[objectToDisplay].code}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onMouseOver={() => dispatch(setIsScale(true))}
+                    onMouseOut={() => dispatch(setIsScale(false))}
+                  >
+                    <img src="github-white-logo.svg" alt="github" />
+                    <p>Voir le code</p>
+                  </a>
+                  {cardsData[objectToDisplay].link && (
+                  <a
+                    href={cardsData[objectToDisplay].link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onMouseOver={() => dispatch(setIsScale(true))}
+                    onMouseOut={() => dispatch(setIsScale(false))}
+                  >
+                    <img src="link-logo.png" alt={cardsData[objectToDisplay].name} />
+                    <p>Voir le site en production</p>
+                  </a>
+                  )}
+                </div>
+                <motion.img
+                  src="/close-logo.svg"
+                  alt="close"
+                  className="card-popup-close"
+                  onClick={() => setPopupWindow(false)}
+                  whileTap={{ scale: 0.8 }}
+                  onMouseOver={() => {
+                    setIsHoverClose(true);
+                    dispatch(setIsScale(true));
+                  }}
+                  onMouseOut={() => {
+                    setIsHoverClose(false);
+                    dispatch(setIsScale(false));
+                  }}
+                  animate={{ rotateZ: isHoverClose ? 180 : 0 }}
+                />
+              </motion.div>
+            )}
+            {cardsData[objectToDisplay].popupText && (
             <motion.div
               className="card-information-popup"
               initial={{
@@ -138,8 +200,45 @@ function Card({ objectToDisplay }) {
                 }}
                 animate={{ rotateZ: isHoverClose ? 180 : 0 }}
               />
-              {cardsData[objectToDisplay].cardText.map((text, index) => <AnimatedTextWords text={text} key={`${index} ${text}`} />)}
+              {cardsData[objectToDisplay].popupText.map((text, index) => <AnimatedTextWords text={text} key={`${index} ${text}`} />)}
+              <div className="iconContainer">
+                <a
+                  href={cardsData[objectToDisplay].code}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onMouseOver={() => dispatch(setIsScale(true))}
+                  onMouseOut={() => dispatch(setIsScale(false))}
+                >
+                  <img src="/github-white-logo.svg" alt="github" />
+                  <p>Voir le code</p>
+                </a>
+                {cardsData[objectToDisplay].codeBack && (
+                  <a
+                    href={cardsData[objectToDisplay].codeBack}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onMouseOver={() => dispatch(setIsScale(true))}
+                    onMouseOut={() => dispatch(setIsScale(false))}
+                  >
+                    <img src="/github-white-logo.svg" alt="github" />
+                    <p>BackOffice/Serveur</p>
+                  </a>
+                )}
+                {cardsData[objectToDisplay].link && (
+                  <a
+                    href={cardsData[objectToDisplay].link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onMouseOver={() => dispatch(setIsScale(true))}
+                    onMouseOut={() => dispatch(setIsScale(false))}
+                  >
+                    <img src="/link-logo.png" alt={cardsData[objectToDisplay].name} />
+                    <p>Voir le site en production</p>
+                  </a>
+                )}
+              </div>
             </motion.div>
+            )}
           </div>
           <motion.div
             className="card-image-wrapper"

@@ -8,8 +8,8 @@
   cursor: none;
   &-container {
     position: relative;
-    width: 28vw;
-    height: 28vw;
+    width: max(28vw, 500px);
+    height: max(28vw, 500px);
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -37,6 +37,7 @@
       flex: 1.4;
       padding: 0 0.5em;
       margin-left: 2vw;
+      font-size: max(1.2vw, 24px);
     }
     &-bottom {
       display: flex;
@@ -49,14 +50,14 @@
   &-title {
     margin: 0.8vw;
     z-index: 0;
-    font-size: 2.3vw;
+    font-size: max(2.3vw, 42px);
     font-family: 'forward-black';
     text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
   }
   &-eye {
     position: absolute;
-    width: 5vw;
-    height: 5vw;
+    width: max(5vw, 110px);
+    height: max(5vw, 110px);
     filter: drop-shadow(3px 2px 2px rgb(0 0 0 / 0.4));
     user-select: none;
     z-index: 99;
@@ -66,8 +67,10 @@
     }
   }
   &-image {
-    width: 15vw;
-    height: 15vw;
+    position: relative;
+    right: -50px;
+    width: max(15vw, 300px);
+    height: max(15vw, 300px);
     border-radius: 50%;
     z-index: 99;
     user-select: none;
@@ -78,8 +81,9 @@
     justify-content: center;
     overflow: hidden;
     & img {
+      width: 100%;
+      height: 100%;
       user-select: none;
-      object-fit: cover;
       filter: drop-shadow(3px 2px 2px rgb(0 0 0 / 0.4));
       -webkit-user-drag: none;
       user-select: none;
@@ -99,21 +103,28 @@
     }
   }
 &-information-popup {
-  width: 40vw;
-  height: 50vh;
+  width: max(40vw, 600px);
+  height: max(40vh, 470px);
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   border: solid 2px #fdfcf2;
   color: #fdfcf2;
   border-radius: 10px;
   top: 10%;
+  padding: 20px 20px 60px 20px;
   background: black;
   z-index: 105;
+  font-size: max(1vw, 20px);
 }
 &-popup-close {
   position: absolute;
+  top: 0;
   right: 0;
-  width: 2vw;
-  height: 2vw;
+  width: max(2vw, 44px);
+  height: max(2vw, 44px);
   margin: 10px;
   z-index: 106;
   &:hover {
@@ -131,5 +142,53 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1vw;
+  font-size: max(1vw, 24px);
+}
+.iconContainer {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: rgb(253, 252, 242);
+  & a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: max(0.6vw, 16px);
+    &:hover {
+      scale: 1.1;
+    }
+    & img {
+      width: 36px;
+      margin-right: 10px;
+    }
+  }
+}
+.withoutPopupText {
+  width: max(10vw, 220px);
+  height: max(10vw, 220px);
+  position: absolute;
+  top: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: solid 2px #fdfcf2;
+  border-radius: 10px;
+  color: #fdfcf2;
+  background: black;
+  z-index: 105;
+  & .iconContainer {
+    width: 100%;
+    height: 60%;
+    position: static;
+    font-size: max(2vw, 40px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 20px;
+  }
 }

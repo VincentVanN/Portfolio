@@ -36,6 +36,20 @@ main {
     background: #fdfcf2;
     z-index: 200;
   }
+  &-center-image {
+    width: 30vw;
+    height: 30vw;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+    
+    }
   &-top {
     &-container {
       width: 100%;
@@ -45,14 +59,9 @@ main {
       justify-content: space-between;
       font-family: 'forward-black';
       font-size: max(12vw, 140px);
+      padding-bottom: 12%;
     }
-    &-left {
-      margin-left: 3%;
-      padding-bottom: 10%;
-    }
-    &-right {
-      padding-bottom: 10%;
-    }
+   
   }
   &-bottom {
     &-container {
@@ -64,14 +73,7 @@ main {
       transform: rotate(180deg);
       font-family: 'forward-black';
       font-size: max(12vw, 140px);
-    }
-    &-left {
-      padding-bottom: 10%;
-      
-    }
-    &-right {
-      padding-bottom: 10%;
-      margin-right: 4%;
+      padding-bottom: 12%;
     }
   }
 }

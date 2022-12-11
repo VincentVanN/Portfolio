@@ -21,7 +21,7 @@ function InfoBoxRight() {
       <div
         className="infoBox-logo"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100px" height="100px">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
           <g id="surface133276044">
             <path
               style={{
@@ -37,36 +37,6 @@ function InfoBoxRight() {
       </div>
       <div className="infoBox-content">
         <motion.div className="infoBox-info">
-          <svg
-            viewBox="0 0 512 512"
-            width="60"
-          >
-            <motion.path
-              d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="20"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{
-                delay: 1,
-                duration: 0.4,
-              }}
-            />
-            <motion.path
-              d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z"
-              fill="none"
-              stroke="currentColor"
-              strokeMiterlimit="10"
-              strokeWidth="20"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{
-                delay: 1,
-                duration: 0.4,
-              }}
-            />
-          </svg>
           <p
             className="infoBox-info-name"
           >
@@ -77,8 +47,7 @@ function InfoBoxRight() {
           <div className="infoBox-icon-container">
             <motion.svg
               viewBox="0 0 512 512"
-              width="65"
-              className="infoBox-link"
+              className="infoBox-at"
               onClick={onEmailClick}
               whileTap={{
                 scale: 0.95,
@@ -87,18 +56,19 @@ function InfoBoxRight() {
               onMouseOut={() => dispatch(setIsScale(false))}
             >
               <motion.path
-                d="M320 254.27c-4.5 51-40.12 80-80.55 80s-67.34-35.82-63.45-80 37.12-80 77.55-80 70.33 36 66.45 80z"
+                d="M448.08 256.08c0-106-86-192-192-192s-192 86-192 192 86 192 192 192 192-85.97 192-192z"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="20"
+                strokeWidth="25"
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
                 transition={{
                   delay: 1,
                   duration: 0.4,
                 }}
-              /><motion.path
-                d="M319.77 415.77c-28.56 12-47.28 14.5-79.28 14.5-97.2 0-169-78.8-160.49-176s94.31-176 191.51-176C381 78.27 441.19 150 432.73 246c-6.31 71.67-52.11 92.32-76.09 88.07-22.56-4-41.18-24.42-37.74-63.5l8.48-96.25"
+              />
+              <motion.path
+                d="M300.81 358.29c-20.83 7.42-34.05 9.59-54.19 9.59-61.17 0-106.39-50.07-101-111.84S205 144.21 266.14 144.21c68.92 0 106.79 45.55 101.47 106.55-4 45.54-32.8 58.66-47.89 56-14.2-2.55-25.92-15.52-23.75-40.35l5.62-44.66c-7.58-9.17-28.11-18-49.93-14.54C231.77 210.3 209 228 206.56 256s14.49 50.84 39.93 50.84 47.86-18.39 50.69-50.84"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="20"
@@ -114,7 +84,6 @@ function InfoBoxRight() {
               <motion.svg
                 viewBox="0 0 512 512"
                 color="#fdfcf2"
-                width="60"
                 whileTap={{
                   scale: 0.95,
                 }}
@@ -139,7 +108,6 @@ function InfoBoxRight() {
               <motion.svg
                 viewBox="0 0 512 512"
                 color="#fdfcf2"
-                width="60"
                 whileTap={{
                   scale: 0.95,
                 }}
@@ -164,7 +132,6 @@ function InfoBoxRight() {
               <motion.svg
                 viewBox="0 0 512 512"
                 color="#fdfcf2"
-                width="60"
                 whileTap={{
                   scale: 0.95,
                 }}

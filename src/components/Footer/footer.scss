@@ -14,6 +14,6 @@
     padding-bottom: 4px;
   }
   &-logo {
-    width: 0.8vw;
+    width: max(0.8vw, 32px);
   }
 }

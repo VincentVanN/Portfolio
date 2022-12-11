@@ -5,8 +5,10 @@ import ParticleImage, {
   Vector,
   forces,
 } from 'react-particle-image';
+import { useSelector } from 'react-redux';
 
 function LogoParticles({ width, height, currentImage }) {
+  const { windowSize } = useSelector((state) => state.navigation);
   const particleOptions = {
     filter: ({ x, y, image }) => {
       const pixel = image.get(x, y);
@@ -33,7 +35,7 @@ function LogoParticles({ width, height, currentImage }) {
         width={width}
         height={height}
         scale={width / 530}
-        entropy={20}
+        entropy={windowSize.width < 1570 ? 10 : 20}
         maxParticles={5000}
         particleOptions={particleOptions}
         mouseMoveForce={motionForce}

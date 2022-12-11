@@ -17,7 +17,10 @@ function Nav() {
   //
   let variantsToDisplay;
   if (!location.state) {
-    variantsToDisplay = initNavHomeVariants;
+    if (location.pathname === '/') {
+      variantsToDisplay = initNavHomeVariants;
+    }
+    else variantsToDisplay = navOtherPageVariants;
   }
   if (location.pathname !== '/' && location.state) {
     variantsToDisplay = navOtherPageVariants;
