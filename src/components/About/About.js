@@ -46,6 +46,13 @@ function About() {
       });
     }
   }, [isAnimationComplete]);
+  useEffect(() => {
+    const starter = document.querySelector('.starter');
+    if (isAnimationComplete) {
+      setIsAnimate({ active: true, number: 0 });
+      starter.focus();
+    }
+  }, [isAnimationComplete]);
   //
   // get element for resizing
   //
@@ -227,7 +234,7 @@ function About() {
             onMouseLeave={() => setIsOnIcon({ active: false, number: 0 })}
           >
             <motion.button
-              className="about-menuItem-image-container"
+              className={`about-menuItem-image-container ${index === 0 ? 'starter' : ''}`}
               style={{
                 position: 'absolute',
                 width: '5vw',

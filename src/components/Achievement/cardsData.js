@@ -104,5 +104,7 @@ export const cardsData = [
     cardText: [
       'Javascript vanilla',
     ],
+    code: 'https://github.com/VincentVanN/customParticles',
+    link: 'https://particles.vann-dev.com',
   },
 ];

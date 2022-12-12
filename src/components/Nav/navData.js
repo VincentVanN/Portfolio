@@ -16,7 +16,7 @@ export const navData = [
         name: 'nav-link',
         path: '/about',
         position: 2,
-        text: 'about',
+        text: 'techno',
       },
     ],
   },
@@ -28,7 +28,7 @@ export const navData = [
         name: 'nav-link',
         path: '/realisations',
         position: 3,
-        text: 'realisation',
+        text: 'realisations',
       },
       {
         name: 'nav-link',

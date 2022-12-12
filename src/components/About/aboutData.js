@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 export const imagePath = [
-  { first: 'react-logo.png', scd: 'redux-logo.png', thr: 'axios-logo.svg' },
   { first: 'about-logo.png', scd: 'home-logo.png', thr: 'storm-logo.png' },
+  { first: 'react-logo.png', scd: 'redux-logo.png', thr: 'axios-logo.svg' },
   { first: 'php-logo.png', scd: 'mysql-logo.png', thr: 'bdd-relation-logo.png' },
   { first: 'javascript-logo.png', scd: 'es6-logo.png', thr: 'ajax-logo.png' },
   { first: 'html-logo.png', scd: 'css-logo.png', thr: 'sass-logo.png' },
@@ -10,6 +10,23 @@ export const imagePath = [
   { first: 'npm-logo.png', scd: 'motion-logo.svg', thr: 'stripe-logo.png' },
 ];
 export const technoText = [
+  {
+    first: [
+      'Vincent Van Nieuwenborgh',
+      'Développeur Front End',
+    ],
+    scd: [
+      'Région de Mons, Belgique.',
+      'Disponible dans un rayon de 100km',
+      'Présentiel ou full remote',
+    ],
+    thr: [
+      'Curieux',
+      'Perséverant',
+      'Créatif',
+      'Autonome',
+    ],
+  },
   {
     first: [
       'Maîtrise de React.js, Vue.js',
@@ -26,23 +43,6 @@ export const technoText = [
       'Maîtrise d\'Axios et API similaires',
       'Gestion des autorisations et des cors',
       'Gestion des erreurs et des codes HTTP',
-    ],
-  },
-  {
-    first: [
-      'Vincent Van Nieuwenborgh',
-      'Développeur Front End',
-    ],
-    scd: [
-      'Région de Mons, Belgique.',
-      'Disponible dans un rayon de 100km',
-      'Présentiel ou full remote',
-    ],
-    thr: [
-      'Curieux',
-      'Perséverant',
-      'Créatif',
-      'Autonome',
     ],
   },
   {
