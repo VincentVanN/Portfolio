@@ -16,7 +16,14 @@ function Cursor() {
         animate={{
           scale: isScale ? 7 : 1,
         }}
-      />
+      >
+        <motion.div
+          className="pointer"
+          animate={{
+            scale: isScale ? 0.15 : 0,
+          }}
+        />
+      </motion.div>
       )}
     </div>
 

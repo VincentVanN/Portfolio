@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { setIsScale } from '../../feature/navigation.slice';
+import CvButton from '../CvButton/CvButton';
 
 function InfoBoxRight() {
   const dispatch = useDispatch();
@@ -42,6 +43,14 @@ function InfoBoxRight() {
           >
             Vincent Van Nieuwenborgh
           </p>
+        </motion.div>
+        <motion.div
+          className="cvButton-Container"
+          whileTap={{
+            scale: 0.95,
+          }}
+        >
+          <CvButton />
         </motion.div>
         <div className="infoBox-info">
           <div className="infoBox-icon-container">

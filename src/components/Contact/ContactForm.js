@@ -14,18 +14,22 @@ import { isErrorForm } from '../../utils/utils';
 
 function ContactForm({ setIsCursor }) {
   const dispatch = useDispatch();
+  const form = useRef();
+  const buttonRef = useRef();
   const [buttonText, setbuttonText] = useState('');
   const [focus, setfocus] = useState('');
   const [isOverflowHidden, setisOverflowHidden] = useState(false);
-  const form = useRef();
-  const buttonRef = useRef();
   const [buttonWidth, setButtonWidth] = useState(0);
   const [isOnClick, setIsOnClick] = useState(false);
+  //
+  //
   const updateDimensions = () => {
     if (buttonRef.current) {
       setButtonWidth(buttonRef.current.clientWidth);
     }
   };
+  //
+  //
   useEffect(() => {
     window.addEventListener('resize', updateDimensions);
     setButtonWidth(buttonRef.current.clientWidth);
@@ -101,10 +105,10 @@ function ContactForm({ setIsCursor }) {
   //
   const sendEmail = (e) => {
     emailjs.sendForm(
-      'service_0qe43eo',
-      'template_qz14e1j',
+      'service_xvcqs1e',
+      'template_xv7i1cl',
       form.current,
-      'LgmGeq9KNgellr_UM',
+      'Bp576JNDA-SW2YC6O',
     )
       .then(
         (result) => {

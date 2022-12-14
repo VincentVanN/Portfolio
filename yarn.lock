@@ -5587,6 +5587,13 @@ react-router@6.4.2, react-router@^6.4.2:
   dependencies:
     "@remix-run/router" "1.0.2"
 
+react-to-print@^2.14.10:
+  version "2.14.10"
+  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.14.10.tgz#f063bb368c2d8926012d52780a2b983e91c3a797"
+  integrity sha512-XJyhDWH/xxgHy5nIBYPXjVidoroq0qRHqTrVF5QbfohPkMx3q8x3H3+Lv7gSq9uA0csAbjkSU0J4mWgj64f6yQ==
+  dependencies:
+    prop-types "^15.8.1"
+
 react-use-mouse-move@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/react-use-mouse-move/-/react-use-mouse-move-1.0.4.tgz#29beee7c98297de630ed7afee6b463de577ba7c8"

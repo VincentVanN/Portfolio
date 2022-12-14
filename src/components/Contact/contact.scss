@@ -26,7 +26,7 @@
         font-family: 'Messapia-Bold';
         cursor: none;
         color: #fdfcf2;
-        font-size: 1.2em;
+        font-size: 0.8em;
         border-style: none; 
         border-color: Transparent; 
         overflow: auto; 
@@ -36,7 +36,7 @@
         height: 100%;
         padding: 30px 20px 0 10px;
         font-family: 'Messapia-Bold';
-        font-size: 1em;
+        font-size: 0.8em;
         background: black;
         cursor: none;
         color: #fdfcf2;
@@ -222,4 +222,20 @@
 .arobase::before {
   content: "\000040";
 }
-
+.cvButton-Container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & button {
+    width: 50px;
+    height: 50px;
+    border: solid 2px #fdfcf2;
+    border-radius: 50%;
+    background: none;
+    color: #fdfcf2;
+    font-family: 'whoa-filled';
+    font-size: 1.3em;
+    text-align: center;
+  }
+}
