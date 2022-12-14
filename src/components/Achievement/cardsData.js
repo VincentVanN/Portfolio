@@ -11,7 +11,7 @@ export const cardsData = [
       'Serveur de paiement Stripe',
     ],
     popupText: [
-      'Projet de fin d\'étude avec une équipe de 4 développeurs.',
+      'Projet eshop pour un client maraîcher avec une équipe de 4 développeurs.',
       'Product owner et lead Dev Front.',
       '',
       '',
@@ -30,7 +30,7 @@ export const cardsData = [
       'interface de paiement Stripe.',
       '',
       '',
-      'La Tournichette a un système de vente périodique atypique, le site a donc été cloné pour les besoins de la présentation.',
+      'La Tournichette a un système de vente périodique atypique, le site a donc été cloné pour les besoins de la présentation du portfolio.',
     ],
     code: 'https://github.com/VincentVanN/tournichette-project-front',
     codeBack: 'https://github.com/VincentVanN/tournichette-project-back',
